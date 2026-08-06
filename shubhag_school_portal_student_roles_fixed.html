@@ -1,0 +1,3103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHUBHAG SINGH INTER COLLEGE MALIKPURA, GHAZIPUR</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:#e5e7eb;
+      --primary:#0f172a;
+      --primary-2:#1e293b;
+      --accent:#2563eb;
+      --accent-2:#14b8a6;
+      --success:#16a34a;
+      --warning:#f59e0b;
+      --danger:#ef4444;
+      --shadow:0 20px 60px rgba(15, 23, 42, .08);
+      --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#eef4ff,#f8fbff 55%,#f8fbff);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+    button,input,select,textarea{font:inherit}
+    .hidden{display:none !important}
+    .btn{
+      border:none;border-radius:16px;padding:12px 16px;cursor:pointer;font-weight:800;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      transition:.2s transform,.2s opacity,.2s background,.2s box-shadow
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 12px 24px rgba(15,23,42,.15)}
+    .btn-outline{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .btn-soft{background:#eef2ff;color:#1d4ed8}
+    .btn-danger{background:#fee2e2;color:#991b1b}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border-radius:999px;background:#f8fafc;border:1px solid var(--line);
+      font-size:12px;font-weight:800;color:var(--muted)
+    }
+    .badge{
+      display:inline-flex;align-items:center;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:900
+    }
+    .paid{background:#dcfce7;color:#166534}
+    .due{background:#fee2e2;color:#991b1b}
+    .partial{background:#fef3c7;color:#92400e}
+    .active{background:#dbeafe;color:#1d4ed8}
+    .inactive{background:#e2e8f0;color:#475569}
+
+    html[data-theme="dark"]{
+      --bg:#0b1220;
+      --card:#111827;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#223047;
+      --primary:#e5e7eb;
+      --primary2:#cbd5e1;
+      --accent:#60a5fa;
+      --accent2:#2dd4bf;
+      --success:#22c55e;
+      --warning:#f59e0b;
+      --danger:#ef4444;
+      --shadow:0 20px 60px rgba(0,0,0,.28);
+    }
+    html[data-theme="dark"] body{background:linear-gradient(180deg,#0b1220,#111827 55%,#0b1220)}
+    html[data-theme="dark"] .sidebar{background:rgba(17,24,39,.88)}
+    html[data-theme="dark"] .topbar{background:rgba(17,24,39,.84)}
+    html[data-theme="dark"] .hero{background:linear-gradient(135deg,#111827,#1f2937)}
+    html[data-theme="dark"] .card,
+    html[data-theme="dark"] .small-card,
+    html[data-theme="dark"] .stat,
+    html[data-theme="dark"] .notice,
+    html[data-theme="dark"] .list-item,
+    html[data-theme="dark"] .panel-card,
+    html[data-theme="dark"] .landing,
+    html[data-theme="dark"] .auth-card,
+    html[data-theme="dark"] .modal,
+    html[data-theme="dark"] .mini-status,
+    html[data-theme="dark"] .field input,
+    html[data-theme="dark"] .field select,
+    html[data-theme="dark"] .field textarea,
+    html[data-theme="dark"] .search,
+    html[data-theme="dark"] .select,
+    html[data-theme="dark"] .pill,
+    html[data-theme="dark"] .badge,
+    html[data-theme="dark"] .table-wrap,
+    html[data-theme="dark"] .fee-stat,
+    html[data-theme="dark"] .fee-ledger-row,
+    html[data-theme="dark"] .fee-setup-row,
+    html[data-theme="dark"] .board-card,
+    html[data-theme="dark"] .glass{background:var(--card) !important;color:var(--text)}
+    html[data-theme="dark"] .btn-outline{background:var(--card);color:var(--text)}
+    html[data-theme="dark"] .btn-soft{background:rgba(96,165,250,.14);color:#bfdbfe}
+    html[data-theme="dark"] .btn-primary{color:#0b1220}
+    html[data-theme="dark"] th{background:color-mix(in srgb, var(--bg) 55%, var(--card));color:var(--muted)}
+
+    /* App shell */
+    .view{display:none;min-height:100vh}
+    .view.active{display:block}
+    .app-shell{min-height:100vh;display:flex}
+    .sidebar{
+      width:306px;flex:0 0 auto;
+      background:rgba(255,255,255,.74);
+      backdrop-filter:blur(18px);
+      border-right:1px solid var(--line);
+      display:flex;flex-direction:column;
+      position:sticky;top:0;height:100vh;
+    }
+    .sidebar-head{padding:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,#0f172a,#334155);
+      display:grid;place-items:center;color:#fff;font-size:24px;box-shadow:0 14px 30px rgba(15,23,42,.18);flex:0 0 auto
+    }
+    .brand h1{margin:0;font-size:15px;line-height:1.25;letter-spacing:-.02em}
+    .brand p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .school-meta{
+      margin-top:14px;background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border-radius:24px;padding:16px;box-shadow:var(--shadow)
+    }
+    .school-meta .year{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#cbd5e1}
+    .school-meta .name{margin-top:10px;font-size:18px;line-height:1.34;font-weight:900}
+    .school-meta .desc{margin-top:8px;color:#cbd5e1;font-size:13px;line-height:1.6}
+    .nav{padding:10px;display:grid;gap:6px;overflow:auto}
+    .nav button{
+      width:100%;text-align:left;border:none;background:transparent;cursor:pointer;
+      padding:13px 14px;border-radius:18px;color:#334155;font-weight:800;display:flex;align-items:center;gap:12px
+    }
+    .nav button:hover{background:#eef2ff}
+    .nav button.active{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;box-shadow:0 12px 24px rgba(15,23,42,.12)}
+    .nav .ico{width:28px;height:28px;border-radius:10px;background:rgba(148,163,184,.14);display:grid;place-items:center;flex:0 0 auto}
+    .nav button.active .ico{background:rgba(255,255,255,.16)}
+    .sidebar-foot{margin-top:auto;padding:14px}
+    .mini-status{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px}
+    .mini-status .row{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13px;padding:7px 0}
+    .mini-status .row span{color:var(--muted)}
+    .content{flex:1;min-width:0}
+    .topbar{
+      position:sticky;top:0;z-index:10;background:rgba(248,251,255,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)
+    }
+    .topbar-inner{
+      max-width:1600px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px
+    }
+    .top-left{display:flex;align-items:center;gap:14px;min-width:0}
+    .hamburger{
+      width:46px;height:46px;border-radius:16px;border:1px solid var(--line);background:#fff;cursor:pointer;display:none
+    }
+    .page-title h2{margin:0;font-size:26px;letter-spacing:-.03em}
+    .page-title p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .search{
+      display:flex;align-items:center;gap:10px;min-width:320px;max-width:420px;width:40vw;
+      background:#fff;border:1px solid var(--line);border-radius:18px;padding:11px 14px
+    }
+    .search input{border:none;outline:none;width:100%;background:transparent}
+    .container{max-width:1600px;margin:auto;padding:22px}
+    .hero{
+      border-radius:34px;background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;padding:28px;box-shadow:var(--shadow);overflow:hidden;position:relative
+    }
+    .hero:after{
+      content:"";position:absolute;right:-100px;bottom:-120px;width:320px;height:320px;border-radius:50%;
+      background:radial-gradient(circle,rgba(37,99,235,.28),transparent 68%)
+    }
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.45fr .9fr;gap:20px;align-items:end}
+    .hero .tag{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);
+      font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase
+    }
+    .hero h3{margin:16px 0 12px;font-size:42px;line-height:1.05;letter-spacing:-.05em;max-width:920px}
+    .hero p{margin:0;max-width:760px;color:#cbd5e1;line-height:1.75;font-size:15px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .hero-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .glass{
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:16px;backdrop-filter:blur(10px)
+    }
+    .glass .l{font-size:12px;color:#cbd5e1;text-transform:uppercase;letter-spacing:.08em}
+    .glass .v{font-size:28px;font-weight:900;margin-top:8px}
+    .glass .d{font-size:12px;color:#cbd5e1;margin-top:6px;line-height:1.5}
+
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+    .stat{
+      background:#fff;border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--shadow);display:flex;align-items:flex-start;justify-content:space-between;gap:14px
+    }
+    .stat .k{color:var(--muted);font-size:13px}
+    .stat .v{font-size:30px;font-weight:900;margin-top:8px;letter-spacing:-.03em}
+    .stat .c{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:var(--success);font-size:12px;font-weight:800}
+    .icon-badge{width:54px;height:54px;border-radius:18px;background:#f1f5f9;display:grid;place-items:center;font-size:22px;flex:0 0 auto}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+    .small-card{padding:18px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow)}
+    .small-card h5{margin:0 0 8px;font-size:18px}
+    .small-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+    .progress-wrap{display:grid;gap:14px}
+    .progress-row{display:grid;gap:8px}
+    .progress-head{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+    .meter{height:10px;border-radius:999px;background:#eef2ff;overflow:hidden}
+    .meter>div{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .pill-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .tab{
+      padding:11px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#334155;cursor:pointer;font-weight:800
+    }
+    .tab.active{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border-color:#0f172a;box-shadow:0 12px 24px rgba(15,23,42,.12)}
+
+    .section-grid{margin-top:18px;display:grid;grid-template-columns:1.4fr .9fr;gap:16px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .card-head{padding:18px 18px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .card-head h4{margin:0;font-size:21px;letter-spacing:-.03em}
+    .card-head p{margin:6px 0 0;color:var(--muted);font-size:13px}
+    .card-body{padding:18px}
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+    .select{padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:#fff;outline:none;min-width:170px}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:22px}
+    table{width:100%;border-collapse:collapse;min-width:1100px}
+    th,td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle;font-size:14px}
+    th{background:#fafbff;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:900}
+    tr:hover td{background:#fbfdff}
+    .notice{padding:14px 0;border-bottom:1px dashed var(--line)}
+    .notice:last-child{border-bottom:none}
+    .notice h5{margin:0 0 4px;font-size:16px}
+    .notice p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+    .list-grid{display:grid;gap:12px}
+    .list-item{
+      display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:#fff
+    }
+    .meter-row{display:grid;gap:8px}
+    .note{padding:14px 16px;border:1px dashed var(--line);border-radius:18px;background:#fbfdff;color:var(--muted);font-size:13px;line-height:1.65}
+    .fee-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px}
+    .fee-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+    .fee-stat{background:#fbfdff;border:1px solid var(--line);border-radius:18px;padding:12px}
+    .fee-stat .k{font-size:12px;color:var(--muted);font-weight:800}
+    .fee-stat .v{font-size:22px;font-weight:900;margin-top:6px}
+    .fee-list{display:grid;gap:10px}
+    .fee-action{display:flex;gap:8px;flex-wrap:wrap}
+    .fee-ledger{display:grid;gap:10px}
+    .fee-ledger-row{display:grid;grid-template-columns:1fr .9fr .9fr .7fr auto;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:16px;background:#fff}
+    .fee-ledger-row .small{font-size:12px;color:var(--muted)}
+    .fee-setup-grid{display:grid;gap:10px}
+    .fee-setup-row{display:grid;grid-template-columns:1fr .8fr auto;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:16px;background:#fff}
+    .fee-setup-row input,.fee-setup-row select,.fee-ledger-row input,.fee-ledger-row select{
+      width:100%;padding:11px 12px;border-radius:14px;border:1px solid var(--line);outline:none;background:#fff
+    }
+    @media (max-width: 980px){
+      .fee-grid,.fee-summary{grid-template-columns:1fr}
+      .fee-ledger-row,.fee-setup-row{grid-template-columns:1fr}
+    }
+
+    .marksheet-rows{display:grid;gap:10px;margin-top:12px}
+    .mark-row{
+      display:grid;
+      grid-template-columns:1.5fr .7fr .7fr .7fr .7fr auto;
+      gap:10px;
+      align-items:center;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fff;
+    }
+    .mark-row input,.mark-row select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      outline:none;
+      background:#fff;
+    }
+    .tiny{font-size:12px;color:var(--muted)}
+    .board-card{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      padding:16px;
+    }
+    .board-top{
+      display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .board-top h5{margin:0;font-size:18px}
+    .board-top p{margin:4px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+    .stack{display:grid;gap:8px}
+    @media (max-width: 980px){
+      .mark-row{grid-template-columns:1fr 1fr 1fr 1fr}
+      .mark-row .full-mobile{grid-column:1/-1}
+    }
+    .footer{padding:20px 0 8px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* views / auth */
+    .landing-shell,.auth-shell{min-height:100vh;display:grid;place-items:center;padding:22px}
+    .landing,.auth-card{
+      width:min(1300px,100%);
+      border:1px solid var(--line);border-radius:34px;overflow:hidden;box-shadow:var(--shadow);background:#fff
+    }
+    .landing-grid{display:grid;grid-template-columns:1.25fr .75fr;min-height:740px}
+    .landing-hero{
+      padding:34px;color:#fff;position:relative;overflow:hidden;
+      background:
+        radial-gradient(circle at top right, rgba(37,99,235,.45), transparent 24%),
+        radial-gradient(circle at bottom left, rgba(124,58,237,.34), transparent 18%),
+        linear-gradient(135deg,#0f172a 0%,#1e293b 56%,#0f172a 100%)
+    }
+    .landing-hero:after{
+      content:"";position:absolute;right:-120px;bottom:-150px;width:360px;height:360px;border-radius:50%;
+      background:radial-gradient(circle, rgba(37,99,235,.30), rgba(37,99,235,0) 68%)
+    }
+    .school-badge{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);
+      font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;position:relative;z-index:1
+    }
+    .landing-hero h1{
+      font-size:48px;line-height:1.04;margin:16px 0 14px;max-width:880px;letter-spacing:-.05em;position:relative;z-index:1
+    }
+    .landing-hero p{margin:0;max-width:760px;color:#cbd5e1;line-height:1.8;font-size:15px;position:relative;z-index:1}
+    .feature-grid{
+      margin-top:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;position:relative;z-index:1
+    }
+    .feature{
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:14px;backdrop-filter:blur(14px)
+    }
+    .feature .t{font-weight:900;font-size:14px;margin-bottom:4px}
+    .feature .d{font-size:12px;color:#cbd5e1;line-height:1.55}
+    .landing-panel{padding:24px;background:linear-gradient(180deg,#fff,#fbfdff)}
+    .panel-card{
+      height:100%;border:1px solid var(--line);border-radius:30px;padding:26px;background:#fff;box-shadow:0 14px 40px rgba(15,23,42,.05);
+      display:flex;flex-direction:column;justify-content:center
+    }
+    .panel-card h2{margin:0;font-size:30px;letter-spacing:-.03em}
+    .panel-card p{color:var(--muted);line-height:1.75;margin:10px 0 22px}
+    .panel-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+    .panel-list li{border:1px solid var(--line);border-radius:20px;padding:14px;background:#fafcff}
+    .panel-list strong{display:block;margin-bottom:4px}
+    .panel-list span{color:var(--muted);font-size:13px;line-height:1.55}
+    .inline-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+    .auth-head{padding:28px;color:#fff;background:linear-gradient(135deg,#0f172a,#1e293b)}
+    .auth-head h2{margin:12px 0 8px;font-size:30px;letter-spacing:-.03em}
+    .auth-head p{margin:0;color:#cbd5e1;line-height:1.7;font-size:14px}
+    .auth-body{padding:26px;display:grid;gap:14px}
+    .field{display:grid;gap:8px}
+    .field label{font-size:13px;font-weight:900;color:var(--muted)}
+    .field input,.field select,.field textarea{
+      width:100%;padding:14px 15px;border-radius:16px;border:1px solid var(--line);outline:none;background:#fff
+    }
+    .field textarea{min-height:100px;resize:vertical}
+    .help{font-size:13px;color:var(--muted);line-height:1.6}
+
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(15,23,42,.48);display:none;align-items:center;justify-content:center;padding:18px;z-index:40
+    }
+    .modal{width:min(980px,100%);background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.25)}
+    .modal-head{padding:22px 22px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .modal-head h4{margin:0;font-size:24px;letter-spacing:-.03em}
+    .modal-head p{margin:6px 0 0;color:var(--muted);font-size:13px}
+    .modal-body{padding:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .modal-body .full{grid-column:1/-1}
+    .modal-actions{padding:0 22px 22px;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+    .otp-box{display:grid;grid-template-columns:1fr auto;gap:10px}
+    .otp-note{font-size:12px;color:var(--muted);line-height:1.5}
+
+    @media (max-width: 1180px){
+      .sidebar{position:fixed;left:0;top:0;transform:translateX(-102%);transition:.25s transform;z-index:30}
+      .sidebar.open{transform:translateX(0)}
+      .hamburger{display:inline-grid;place-items:center}
+      .section-grid,.hero-grid,.landing-grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .landing-hero h1{font-size:36px}
+    }
+    @media (max-width: 720px){
+      .container{padding:14px}
+      .topbar-inner{padding:14px}
+      .hero,.card,.small-card,.landing,.auth-card{border-radius:24px}
+      .stats{grid-template-columns:1fr}
+      .hero h3{font-size:30px}
+      .search{width:100%;min-width:100%}
+      .top-right{display:none}
+      .page-title h2{font-size:22px}
+      .feature-grid{grid-template-columns:1fr}
+      .modal-body{grid-template-columns:1fr}
+      .landing-grid{min-height:auto}
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<button class="theme-float" id="themeToggle" title="Toggle theme">🌙</button>
+
+<template id="studentRow">
+  <tr>
+    <td class="c_name"></td>
+    <td class="c_adm"></td>
+    <td class="c_level"></td>
+    <td class="c_section"></td>
+    <td class="c_roll"></td>
+    <td><span class="badge c_status"></span></td>
+    <td><span class="badge c_fee"></span></td>
+    <td class="c_att"></td>
+    <td class="c_action"></td>
+  </tr>
+</template>
+
+<template id="regRow">
+  <tr>
+    <td class="r_name"></td>
+    <td class="r_mobile"></td>
+    <td class="r_apply"></td>
+    <td class="r_parent"></td>
+    <td class="r_date"></td>
+    <td><span class="badge r_status"></span></td>
+    <td class="r_action"></td>
+  </tr>
+</template>
+
+<template id="teacherRow">
+  <tr>
+    <td class="t_name"></td>
+    <td class="t_subject"></td>
+    <td class="t_classes"></td>
+    <td><span class="badge t_status"></span></td>
+    <td class="t_action"></td>
+  </tr>
+</template>
+
+<div class="modal-backdrop" id="studentModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h4 id="modalTitle">Add Student</h4>
+        <p>Manage records for Nursery to 12th.</p>
+      </div>
+      <button class="btn btn-outline" id="closeModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Student Name</label><input id="fName"></div>
+      <div class="field"><label>Admission No.</label><input id="fAdm"></div>
+      <div class="field"><label>Level</label><select id="fLevel"></select></div>
+      <div class="field"><label>Section</label><input id="fSection" placeholder="A"></div>
+      <div class="field"><label>Roll No.</label><input id="fRoll" placeholder="12"></div>
+      <div class="field"><label>Gender</label><select id="fGender"><option>Male</option><option>Female</option><option>Other</option></select></div>
+      <div class="field"><label>Father Name</label><input id="fFather"></div>
+      <div class="field"><label>Mother Name</label><input id="fMother"></div>
+      <div class="field"><label>Date of Birth</label><input id="fDOB" type="date"></div>
+      <div class="field"><label>Status</label><select id="fStatus"><option>Active</option><option>Inactive</option><option>Left</option></select></div>
+      <div class="field"><label>Fee Status</label><select id="fFee"><option>Paid</option><option>Partial</option><option>Due</option></select></div>
+      <div class="field"><label>Monthly Fee</label><input id="fMonthlyFee" type="number" min="0" placeholder="e.g. 1200"></div>
+      <div class="field"><label>Attendance %</label><input id="fAttend" type="number" min="0" max="100" value="90"></div>
+      <div class="field"><label>Mobile</label><input id="fMobile"></div>
+      <div class="field full"><label>Address</label><textarea id="fAddress"></textarea></div>
+      <div class="field full"><label>Remark</label><textarea id="fRemark"></textarea></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="cancelModal">Cancel</button>
+      <button class="btn btn-primary" id="saveStudent">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="regModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h4 id="regTitle">New Admission Registration</h4>
+        <p>Verify OTP before submitting registration.</p>
+      </div>
+      <button class="btn btn-outline" id="closeRegModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Student Name</label><input id="rName"></div>
+      <div class="field"><label>Mobile</label><input id="rMobile"></div>
+      <div class="field"><label>Apply For</label><select id="rApply"></select></div>
+      <div class="field"><label>Parent / Guardian</label><input id="rParent"></div>
+      <div class="field full"><label>Address</label><textarea id="rAddress"></textarea></div>
+      <div class="field full"><label>Previous School / Note</label><textarea id="rNote"></textarea></div>
+      <div class="field full">
+        <label>OTP Verification</label>
+        <div class="otp-box">
+          <button class="btn btn-soft" id="sendOtp">Send OTP</button>
+          <button class="btn btn-outline" id="verifyOtp">Verify OTP</button>
+        </div>
+        <div class="otp-note" id="otpNote">OTP will be shown only in this demo portal. In a live system, it should be sent to the mobile number through SMS.</div>
+      </div>
+      <div class="field full"><label>Enter OTP</label><input id="rOtp" placeholder="6-digit OTP"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="cancelReg">Cancel</button>
+      <button class="btn btn-primary" id="saveReg">Submit Registration</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="teacherModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h4 id="teacherModalTitle">Add Teacher</h4>
+        <p>Teacher records are editable and removable.</p>
+      </div>
+      <button class="btn btn-outline" id="closeTeacherModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Teacher Name</label><input id="tName"></div>
+      <div class="field"><label>Subject</label><input id="tSubject"></div>
+      <div class="field"><label>Classes</label><input id="tClasses"></div>
+      <div class="field"><label>Status</label><select id="tStatus"><option>On Duty</option><option>Leave</option><option>Absent</option></select></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="cancelTeacher">Cancel</button>
+      <button class="btn btn-primary" id="saveTeacher">Save</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-backdrop" id="marksheetModal">
+  <div class="modal" style="width:min(1180px,100%)">
+    <div class="modal-head">
+      <div>
+        <h4 id="marksheetModalTitle">Marksheet Editor</h4>
+        <p>Board-style subject marks, editable rows and PDF download.</p>
+      </div>
+      <button class="btn btn-outline" id="closeMarksheetModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Student Name</label><input id="msStudentName" disabled></div>
+      <div class="field"><label>Admission No.</label><input id="msAdm" disabled></div>
+      <div class="field"><label>Class</label><input id="msLevel" disabled></div>
+      <div class="field"><label>Section</label><input id="msSection" disabled></div>
+      <div class="field"><label>Roll No.</label><input id="msRoll" disabled></div>
+      <div class="field"><label>Session</label><input id="msSession" disabled value="2026-27"></div>
+      <div class="field full">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+          <label>Subjects / Marks</label>
+          <button class="btn btn-soft" id="addMarkRow">+ Add Subject</button>
+        </div>
+        <div class="marksheet-rows" id="marksheetRows"></div>
+      </div>
+      <div class="field full">
+        <label>Result Note</label>
+        <textarea id="msNote" placeholder="Example: Promoted to next class / Excellent performance"></textarea>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-soft" id="downloadMarksheetPdf">Download PDF</button>
+      <button class="btn btn-outline" id="cancelMarksheet">Cancel</button>
+      <button class="btn btn-primary" id="saveMarksheet">Save Marksheet</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-backdrop" id="feeModal">
+  <div class="modal" style="width:min(1180px,100%)">
+    <div class="modal-head">
+      <div>
+        <h4 id="feeModalTitle">Fee Ledger</h4>
+        <p>Monthly fee entry, edit and delete for each student.</p>
+      </div>
+      <button class="btn btn-outline" id="closeFeeModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Student</label><input id="feeStudentName" disabled></div>
+      <div class="field"><label>Admission No.</label><input id="feeAdm" disabled></div>
+      <div class="field"><label>Class</label><input id="feeClass" disabled></div>
+      <div class="field"><label>Roll No.</label><input id="feeRoll" disabled></div>
+      <div class="field"><label>Month</label><input id="feeMonth" type="month"></div>
+      <div class="field"><label>Monthly Fee</label><input id="feeMonthlyFee" type="number" min="0"></div>
+      <div class="field"><label>Paid Amount</label><input id="feePaid" type="number" min="0"></div>
+      <div class="field"><label>Previous Due</label><input id="feePrevDue" type="number" min="0"></div>
+      <div class="field full"><label>Note</label><textarea id="feeNote"></textarea></div>
+      <div class="field full">
+        <div class="fee-ledger" id="feeLedgerList"></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-soft" id="addFeeEntry">+ Add Entry</button>
+      <button class="btn btn-soft" id="downloadFeePdfBtn">Download PDF</button>
+      <button class="btn btn-outline" id="cancelFeeModal">Cancel</button>
+      <button class="btn btn-primary" id="saveFeeEntry">Save Entry</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="settingsModal">
+  <div class="modal" style="width:min(760px,100%)">
+    <div class="modal-head">
+      <div>
+        <h4>Change Admin Login</h4>
+        <p>Update admin user ID and password from here.</p>
+      </div>
+      <button class="btn btn-outline" id="closeSettingsModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field full"><label>Admin User ID</label><input id="settingsUser"></div>
+      <div class="field full"><label>Admin Password</label><input id="settingsPass" type="password"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="cancelSettingsModal">Cancel</button>
+      <button class="btn btn-primary" id="saveSettingsBtn">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+  const SCHOOL_NAME = "SHUBHAG SINGH INTER COLLEGE MALIKPURA, GHAZIPUR";
+  const SESSION = "2026-27";
+  const ADMIN_USER = "shubhag";
+  const ADMIN_PASS = "0001";
+  const LS_STUDENTS = "ssic_students_2026_27_v7";
+  const LS_REG = "ssic_regs_2026_27_v7";
+  const LS_LOGIN = "ssic_login_2026_27_v7";
+  const LS_TEACHERS = "ssic_teachers_2026_27_v7";
+  const LS_CLASS_FEES = "ssic_class_fees_2026_27_v7";
+  const LS_FEE_RECORDS = "ssic_fee_records_2026_27_v7";
+  const LS_MARKS = "ssic_marksheets_2026_27_v7";
+  const LS_LIBRARY = "ssic_library_2026_27_v7";
+  const LS_TRANSPORT = "ssic_transport_2026_27_v7";
+  const LS_HOLIDAYS = "ssic_holidays_2026_27_v7";
+  const LS_REPORTS = "ssic_reports_2026_27_v7";
+  const LS_THEME = "ssic_theme_2026_27_v7";
+  const LS_STUDENT_LOGIN = "ssic_student_login_2026_27_v7";
+  const LS_STUDENT_ID = "ssic_student_id_2026_27_v7";
+  const LS_NOTICES = "ssic_notices_2026_27_v7";
+  const LS_TIMETABLE = "ssic_timetable_2026_27_v7";
+  const LS_ADMIN = "ssic_admin_login_2026_27_v7";
+
+  const levels = ["Nursery","LKG","UKG","1","2","3","4","5","6","7","8","9","10","11","12"];
+
+  const sampleStudents = [
+    { id:1, admissionNo:"ADM-2026-001", name:"Aarav Singh", level:"12", section:"A", rollNo:"01", gender:"Male", fatherName:"Ramesh Singh", motherName:"Sita Devi", status:"Active", fee:"Paid", attendance:96, mobile:"9876543210", address:"Malikpura, Ghazipur", remark:"Science stream" },
+    { id:2, admissionNo:"ADM-2026-002", name:"Sana Khan", level:"11", section:"B", rollNo:"04", gender:"Female", fatherName:"Imran Khan", motherName:"Nazia Khatoon", status:"Active", fee:"Due", attendance:91, mobile:"9876543211", address:"Ghazipur", remark:"Fee reminder" },
+    { id:3, admissionNo:"ADM-2026-003", name:"Aditya Verma", level:"10", section:"A", rollNo:"07", gender:"Male", fatherName:"Sunil Verma", motherName:"Anita Verma", status:"Active", fee:"Partial", attendance:88, mobile:"9876543212", address:"Malikpura", remark:"Library member" },
+    { id:4, admissionNo:"ADM-2026-004", name:"Riya Yadav", level:"9", section:"C", rollNo:"02", gender:"Female", fatherName:"Deepak Yadav", motherName:"Meena Yadav", status:"Inactive", fee:"Paid", attendance:97, mobile:"9876543213", address:"Nearby village", remark:"TC issued" },
+    { id:5, admissionNo:"ADM-2026-005", name:"Mohit Kumar", level:"8", section:"B", rollNo:"11", gender:"Male", fatherName:"Rajesh Kumar", motherName:"Poonam Devi", status:"Active", fee:"Due", attendance:85, mobile:"9876543214", address:"Malikpura", remark:"Sports team" },
+    { id:6, admissionNo:"ADM-2026-006", name:"Aanya", level:"Nursery", section:"A", rollNo:"03", gender:"Female", fatherName:"Vikas", motherName:"Rekha", status:"Active", fee:"Paid", attendance:94, mobile:"9876543215", address:"Malikpura", remark:"Morning batch" },
+    { id:7, admissionNo:"ADM-2026-007", name:"Kabir", level:"LKG", section:"B", rollNo:"06", gender:"Male", fatherName:"Sanjay", motherName:"Pooja", status:"Active", fee:"Partial", attendance:92, mobile:"9876543216", address:"City", remark:"" },
+    { id:8, admissionNo:"ADM-2026-008", name:"Ishita", level:"UKG", section:"A", rollNo:"01", gender:"Female", fatherName:"Anil", motherName:"Seema", status:"Active", fee:"Paid", attendance:95, mobile:"9876543217", address:"Village side", remark:"" },
+  ];
+
+  const sampleRegs = [
+    { id:101, name:"Nandini Singh", mobile:"9000011111", applyFor:"11", parent:"Vijay Singh", date:"2026-08-06", status:"Pending", verified:false }
+  ];
+
+  const sampleTeachers = [
+    { id:201, name:"Mr. Pradeep Singh", subject:"Mathematics", classes:"9-12", status:"On Duty" },
+    { id:202, name:"Ms. Neha Verma", subject:"English", classes:"6-10", status:"On Duty" },
+    { id:203, name:"Mr. Imran Ali", subject:"Science", classes:"7-12", status:"On Duty" },
+    { id:204, name:"Mrs. Anjali Singh", subject:"Hindi", classes:"Nursery-12", status:"On Duty" }
+  ];
+
+  const sampleNotices = [
+    { id:1, title:"PTM Scheduled", desc:"Friday 10:00 AM main hall me PTM hoga." },
+    { id:2, title:"Fee Reminder", desc:"Pending fee 10th se pehle clear karna hoga." },
+    { id:3, title:"Annual Sports", desc:"Sports practice next Monday se start hogi." },
+    { id:4, title:"Session 2026-27", desc:"New session entries aur class allocation open hai." }
+  ];
+
+  const sampleTimetable = [
+    { id:1, time:"08:00 AM", subject:"Assembly & Prayer", room:"Ground" },
+    { id:2, time:"09:00 AM", subject:"Mathematics", room:"Class 10-A" },
+    { id:3, time:"10:00 AM", subject:"English", room:"Class 11-B" },
+    { id:4, time:"11:00 AM", subject:"Science Lab", room:"Lab 2" },
+    { id:5, time:"12:00 PM", subject:"Computer", room:"Smart Lab" },
+    { id:6, time:"01:00 PM", subject:"Hindi", room:"Class 9-C" }
+  ];
+
+
+  const holidays = [
+    ["15 Aug 2026","Independence Day"],
+    ["02 Oct 2026","Gandhi Jayanti"],
+    ["12 Nov 2026","Diwali Holiday"],
+    ["25 Dec 2026","Christmas Holiday"]
+  ];
+
+  const feeHeads = [
+    ["Admission Fee","₹2,500"],
+    ["Monthly Tuition","₹1,200"],
+    ["Exam Fee","₹600"],
+    ["Activity Fee","₹300"]
+  ];
+
+  let notices = JSON.parse(localStorage.getItem(LS_NOTICES) || "null") || sampleNotices;
+  let timetable = JSON.parse(localStorage.getItem(LS_TIMETABLE) || "null") || sampleTimetable;
+
+  const sampleLibrary = [
+    { id:1, title:"Hindi Sahitya", info:"Issued to Riya Yadav", status:"Returned" },
+    { id:2, title:"Science Guide", info:"Issued to Aarav Singh", status:"Issued" },
+    { id:3, title:"English Grammar", info:"Available in rack A2", status:"Available" }
+  ];
+
+  const sampleTransport = [
+    { id:1, title:"Bus 1", info:"Route: Malikpura → City → School", status:"Active" },
+    { id:2, title:"Bus 2", info:"Route: Village Side → School", status:"Active" },
+    { id:3, title:"Driver", info:"Contact and route details", status:"Manage" }
+  ];
+
+  const sampleHolidays = [
+    { id:1, title:"Independence Day", date:"15 Aug 2026" },
+    { id:2, title:"Gandhi Jayanti", date:"02 Oct 2026" },
+    { id:3, title:"Diwali Holiday", date:"12 Nov 2026" },
+    { id:4, title:"Christmas Holiday", date:"25 Dec 2026" }
+  ];
+
+  const sampleReports = [
+    { id:1, title:"Student Report", desc:"Class-wise records and profiles." },
+    { id:2, title:"Fee Report", desc:"Paid, due and monthly collection." },
+    { id:3, title:"Attendance Report", desc:"Monthly and yearly attendance." }
+  ];
+
+
+  let students = JSON.parse(localStorage.getItem(LS_STUDENTS) || "null") || sampleStudents;
+  let registrations = JSON.parse(localStorage.getItem(LS_REG) || "null") || sampleRegs;
+  let teachers = JSON.parse(localStorage.getItem(LS_TEACHERS) || "null") || sampleTeachers;
+  let marksheets = JSON.parse(localStorage.getItem(LS_MARKS) || "null") || [];
+  let libraryItems = JSON.parse(localStorage.getItem(LS_LIBRARY) || "null") || sampleLibrary;
+  let transportItems = JSON.parse(localStorage.getItem(LS_TRANSPORT) || "null") || sampleTransport;
+  let holidayItems = JSON.parse(localStorage.getItem(LS_HOLIDAYS) || "null") || sampleHolidays;
+  let reportItems = JSON.parse(localStorage.getItem(LS_REPORTS) || "null") || sampleReports;
+  let adminAuth = JSON.parse(localStorage.getItem(LS_ADMIN) || "null") || { user: ADMIN_USER, pass: ADMIN_PASS };
+  let classFees = JSON.parse(localStorage.getItem(LS_CLASS_FEES) || "null") || {
+    Nursery: 800, LKG: 800, UKG: 900,
+    "1": 1100, "2": 1100, "3": 1200, "4": 1200, "5": 1300,
+    "6": 1400, "7": 1400, "8": 1500, "9": 1700, "10": 1800, "11": 2000, "12": 2200
+  };
+  let feeRecords = JSON.parse(localStorage.getItem(LS_FEE_RECORDS) || "null") || [];
+  let loggedIn = localStorage.getItem(LS_LOGIN) === "1";
+  let studentLoggedIn = localStorage.getItem(LS_STUDENT_LOGIN) === "1";
+  let studentSessionId = Number(localStorage.getItem(LS_STUDENT_ID) || 0);
+  let section = loggedIn ? "app" : studentLoggedIn ? "studentApp" : "landing";
+  let activeTab = "dashboard";
+  let search = "";
+  let feeSearchTerm = "";
+  let filterLevel = "all";
+  let feeMonthSelection = new Date().toISOString().slice(0,7);
+  let sidebarOpen = false;
+  let editingId = null;
+  let regMode = false;
+  let studentMode = false;
+  let otpState = { code:"", verified:false, sent:false, phone:"" };
+  let teacherEditingId = null;
+  let theme = localStorage.getItem(LS_THEME) || "light";
+  let marksheetEditingId = null;
+
+
+  const defaultStudentDobs = {
+    1:"2007-04-15",2:"2008-06-02",3:"2009-01-21",4:"2009-11-09",5:"2010-03-18",6:"2019-08-12",7:"2018-02-10",8:"2017-12-03"
+  };
+  students.forEach((s, i) => {
+    if(!s.dob){
+      s.dob = defaultStudentDobs[s.id] || `2010-01-${String((i % 27) + 1).padStart(2,"0")}`;
+    }
+  });
+  ensureMarksheets();
+  ensureFees();
+
+  const root = document.getElementById("root");
+  document.getElementById("themeToggle").onclick = toggleTheme;
+  const studentModal = document.getElementById("studentModal");
+  const regModal = document.getElementById("regModal");
+  const teacherModal = document.getElementById("teacherModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const teacherModalTitle = document.getElementById("teacherModalTitle");
+
+  function saveStudents(){ localStorage.setItem(LS_STUDENTS, JSON.stringify(students)); }
+  function saveRegs(){ localStorage.setItem(LS_REG, JSON.stringify(registrations)); }
+  function saveTeachers(){ localStorage.setItem(LS_TEACHERS, JSON.stringify(teachers)); }
+  function money(n){ return new Intl.NumberFormat("en-IN").format(n); }
+  function feeClass(v){ return v === "Paid" ? "paid" : v === "Partial" ? "partial" : "due"; }
+  function statusClass(v){ return v === "Active" ? "active" : v === "Inactive" ? "inactive" : "partial"; }
+  function levelLabel(v){ return v; }
+
+  function saveClassFees(){ localStorage.setItem(LS_CLASS_FEES, JSON.stringify(classFees)); }
+  function saveFeeRecords(){ localStorage.setItem(LS_FEE_RECORDS, JSON.stringify(feeRecords)); }
+  function saveNotices(){ localStorage.setItem(LS_NOTICES, JSON.stringify(notices)); }
+  function saveTimetable(){ localStorage.setItem(LS_TIMETABLE, JSON.stringify(timetable)); }
+  function saveLibrary(){ localStorage.setItem(LS_LIBRARY, JSON.stringify(libraryItems)); }
+  function saveTransport(){ localStorage.setItem(LS_TRANSPORT, JSON.stringify(transportItems)); }
+  function saveHolidays(){ localStorage.setItem(LS_HOLIDAYS, JSON.stringify(holidayItems)); }
+  function saveReports(){ localStorage.setItem(LS_REPORTS, JSON.stringify(reportItems)); }
+  function saveAdmin(){ localStorage.setItem(LS_ADMIN, JSON.stringify(adminAuth)); }
+  function saveStudentSession(){
+    localStorage.setItem(LS_STUDENT_LOGIN, studentLoggedIn ? "1" : "0");
+    localStorage.setItem(LS_STUDENT_ID, String(studentSessionId || 0));
+  }
+
+  function applyTheme(){
+    document.documentElement.dataset.theme = theme;
+    document.body.dataset.theme = theme;
+    const btn = document.getElementById("themeToggle");
+    if(btn){
+      btn.textContent = theme === "dark" ? "☀️" : "🌙";
+      btn.title = theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+    }
+  }
+  function toggleTheme(){
+    theme = theme === "dark" ? "light" : "dark";
+    localStorage.setItem(LS_THEME, theme);
+    applyTheme();
+    render();
+  }
+
+  function classFeeAmount(level){ return Number(classFees[level] || 0); }
+  function studentMonthlyFee(student){
+    return Number(student?.monthlyFee || classFeeAmount(student?.level) || 0);
+  }
+  function normalizeFeeRecord(record){
+    const due = Number(record.due || 0);
+    const paid = Number(record.paid || 0);
+    return {
+      ...record,
+      due,
+      paid,
+      balance: Math.max(0, due - paid),
+      status: paid >= due && due > 0 ? "Paid" : paid > 0 ? "Partial" : "Due"
+    };
+  }
+  function feeRecordsForStudent(studentId){
+    return feeRecords.filter(r => r.studentId === studentId).map(normalizeFeeRecord);
+  }
+  function feePaidTotal(studentId){
+    return feeRecordsForStudent(studentId).reduce((a,r)=>a + Number(r.paid || 0), 0);
+  }
+  function feeDueTotal(studentId){
+    return feeRecordsForStudent(studentId).reduce((a,r)=>a + Number(r.balance || 0), 0);
+  }
+  function feeMonthTotal(month){
+    return feeRecords.filter(r => r.month === month).reduce((a,r)=>a + Number(r.paid || 0), 0);
+  }
+  function currentMonth(){
+    return new Date().toISOString().slice(0,7);
+  }
+  function defaultFeeEntry(student){
+    const due = studentMonthlyFee(student) || classFeeAmount(student.level) || 0;
+    return normalizeFeeRecord({
+      id: Date.now() + Math.floor(Math.random()*10000),
+      studentId: student.id,
+      month: currentMonth(),
+      due,
+      paid: 0,
+      note: "Auto generated monthly fee"
+    });
+  }
+  function ensureFees(){
+    students.forEach(student => {
+      if(!student.monthlyFee){
+        student.monthlyFee = classFeeAmount(student.level) || 0;
+      }
+      const exists = feeRecords.some(r => r.studentId === student.id && r.month === currentMonth());
+      if(!exists){
+        feeRecords.push(defaultFeeEntry(student));
+      }
+    });
+    saveStudents();
+    saveFeeRecords();
+  }
+
+  function saveMarks(){ localStorage.setItem(LS_MARKS, JSON.stringify(marksheets)); }
+
+  function nextId(items){ return items.length ? Math.max(...items.map(x => Number(x.id || 0))) + 1 : 1; }
+
+  function promptCrud(title, fields, current = {}){
+    const out = {};
+    for(const f of fields){
+      const val = prompt(`${title} - ${f.label}:`, current[f.key] ?? f.default ?? "");
+      if(val === null) return null;
+      out[f.key] = f.type === "number" ? Number(val || 0) : val.trim();
+    }
+    return out;
+  }
+
+  function addLibraryItem(){
+    const data = promptCrud("Add Library Item", [
+      {key:"title", label:"Book Title"},
+      {key:"info", label:"Issue / Note"},
+      {key:"status", label:"Status", default:"Available"}
+    ]);
+    if(!data || !data.title) return;
+    libraryItems.unshift({ id: nextId(libraryItems), ...data });
+    saveLibrary(); renderApp();
+  }
+  function editLibraryItem(id){
+    const item = libraryItems.find(x=>x.id===id); if(!item) return;
+    const data = promptCrud("Edit Library Item", [
+      {key:"title", label:"Book Title"},
+      {key:"info", label:"Issue / Note"},
+      {key:"status", label:"Status"}
+    ], item);
+    if(!data || !data.title) return;
+    Object.assign(item, data); saveLibrary(); renderApp();
+  }
+  function deleteLibraryItem(id){ if(!confirm("Delete this library item?")) return; libraryItems = libraryItems.filter(x=>x.id!==id); saveLibrary(); renderApp(); }
+
+  function addTransportItem(){
+    const data = promptCrud("Add Transport Item", [
+      {key:"title", label:"Bus / Driver"},
+      {key:"info", label:"Route / Contact"},
+      {key:"status", label:"Status", default:"Active"}
+    ]);
+    if(!data || !data.title) return;
+    transportItems.unshift({ id: nextId(transportItems), ...data });
+    saveTransport(); renderApp();
+  }
+  function editTransportItem(id){
+    const item = transportItems.find(x=>x.id===id); if(!item) return;
+    const data = promptCrud("Edit Transport Item", [
+      {key:"title", label:"Bus / Driver"},
+      {key:"info", label:"Route / Contact"},
+      {key:"status", label:"Status"}
+    ], item);
+    if(!data || !data.title) return;
+    Object.assign(item, data); saveTransport(); renderApp();
+  }
+  function deleteTransportItem(id){ if(!confirm("Delete this transport item?")) return; transportItems = transportItems.filter(x=>x.id!==id); saveTransport(); renderApp(); }
+
+  function addHolidayItem(){
+    const data = promptCrud("Add Holiday", [
+      {key:"title", label:"Holiday Name"},
+      {key:"date", label:"Date"}
+    ]);
+    if(!data || !data.title) return;
+    holidayItems.unshift({ id: nextId(holidays), ...data });
+    saveHolidays(); renderApp();
+  }
+  function editHolidayItem(id){
+    const item = holidayItems.find(x=>x.id===id); if(!item) return;
+    const data = promptCrud("Edit Holiday", [
+      {key:"title", label:"Holiday Name"},
+      {key:"date", label:"Date"}
+    ], item);
+    if(!data || !data.title) return;
+    Object.assign(item, data); saveHolidays(); renderApp();
+  }
+  function deleteHolidayItem(id){ if(!confirm("Delete this holiday?")) return; holidayItems = holidayItems.filter(x=>x.id!==id); saveHolidays(); renderApp(); }
+
+  function addReportItem(){
+    const data = promptCrud("Add Report Widget", [
+      {key:"title", label:"Report Title"},
+      {key:"desc", label:"Description"}
+    ]);
+    if(!data || !data.title) return;
+    reportItems.unshift({ id: nextId(reportItems), ...data });
+    saveReports(); renderApp();
+  }
+  function editReportItem(id){
+    const item = reportItems.find(x=>x.id===id); if(!item) return;
+    const data = promptCrud("Edit Report Widget", [
+      {key:"title", label:"Report Title"},
+      {key:"desc", label:"Description"}
+    ], item);
+    if(!data || !data.title) return;
+    Object.assign(item, data); saveReports(); renderApp();
+  }
+  function deleteReportItem(id){ if(!confirm("Delete this report widget?")) return; reportItems = reportItems.filter(x=>x.id!==id); saveReports(); renderApp(); }
+
+  function openSettingsModal(){
+    const modal = document.getElementById("settingsModal");
+    document.getElementById("settingsUser").value = adminAuth.user || ADMIN_USER;
+    document.getElementById("settingsPass").value = adminAuth.pass || ADMIN_PASS;
+    modal.style.display = "flex";
+  }
+  function saveSettings(){
+    const user = document.getElementById("settingsUser").value.trim();
+    const pass = document.getElementById("settingsPass").value.trim();
+    if(!user || !pass){ alert("User ID and password are required."); return; }
+    adminAuth = { user, pass };
+    saveAdmin();
+    document.getElementById("settingsModal").style.display = "none";
+    alert("Admin login updated.");
+    renderApp();
+  }
+
+  function downloadFeePdf(studentId){
+    const student = students.find(s => s.id === studentId);
+    if(!student) return;
+    const month = feeMonthSelection || currentMonth();
+    const entry = feeRecords.find(r => r.studentId === studentId && r.month === month) || feeRecordsForStudent(studentId)[0] || defaultFeeEntry(student);
+    const paid = feePaidTotal(studentId);
+    const due = feeDueTotal(studentId);
+    const { jsPDF } = window.jspdf || {};
+    if(!jsPDF){ alert("PDF library load nahi hua."); return; }
+    const doc = new jsPDF({ orientation:"portrait", unit:"mm", format:"a4" });
+    const w = doc.internal.pageSize.getWidth();
+    const h = doc.internal.pageSize.getHeight();
+    doc.setDrawColor(20); doc.setLineWidth(0.6); doc.rect(8,8,w-16,h-16);
+    doc.setFont("helvetica","bold"); doc.setFontSize(16); doc.text(SCHOOL_NAME, w/2, 18, {align:"center"});
+    doc.setFontSize(11); doc.setFont("helvetica","normal"); doc.text("Fee Receipt / Statement", w/2, 25, {align:"center"});
+    doc.line(12, 30, w-12, 30);
+    doc.setFontSize(10);
+    doc.setFont("helvetica","bold"); doc.text("Student Name:", 14, 40); doc.setFont("helvetica","normal"); doc.text(student.name || "", 44, 40);
+    doc.setFont("helvetica","bold"); doc.text("Admission No.:", 108, 40); doc.setFont("helvetica","normal"); doc.text(student.admissionNo || "", 141, 40);
+    doc.setFont("helvetica","bold"); doc.text("Class:", 14, 47); doc.setFont("helvetica","normal"); doc.text(`${student.level || ""}-${student.section || ""}`, 31, 47);
+    doc.setFont("helvetica","bold"); doc.text("Roll No.:", 60, 47); doc.setFont("helvetica","normal"); doc.text(student.rollNo || "", 82, 47);
+    doc.setFont("helvetica","bold"); doc.text("Month:", 108, 47); doc.setFont("helvetica","normal"); doc.text(month, 126, 47);
+    doc.setFont("helvetica","bold"); doc.text("Monthly Fee:", 14, 54); doc.setFont("helvetica","normal"); doc.text(`₹${money(studentMonthlyFee(student))}`, 40, 54);
+    doc.setFont("helvetica","bold"); doc.text("Total Paid:", 90, 54); doc.setFont("helvetica","normal"); doc.text(`₹${money(paid)}`, 116, 54);
+    doc.setFont("helvetica","bold"); doc.text("Total Due:", 145, 54); doc.setFont("helvetica","normal"); doc.text(`₹${money(due)}`, 171, 54);
+    const rows = feeRecordsForStudent(studentId).sort((a,b)=>String(b.month).localeCompare(String(a.month))).map((r,i)=>[String(i+1), r.month, `₹${money(r.due)}`, `₹${money(r.paid)}`, `₹${money(r.balance)}`, r.status, r.note || ""]);
+    doc.autoTable({
+      startY: 62,
+      head: [["S.No","Month","Due","Paid","Balance","Status","Note"]],
+      body: rows,
+      styles:{fontSize:9,cellPadding:2.2,lineColor:[80,80,80],lineWidth:0.1},
+      headStyles:{fillColor:[20,20,20],textColor:255},
+      margin:{left:12,right:12},
+    });
+    const y = doc.lastAutoTable.finalY + 10;
+    doc.setFont("helvetica","bold"); doc.text(`Receipt Generated: ${new Date().toLocaleDateString()}`, 14, y);
+    doc.setFont("helvetica","normal"); doc.text(`Issue Note: ${entry.note || "Monthly fee statement"}`, 14, y+7);
+    doc.text("Class Teacher", 27, h-22); doc.text("Principal", 151, h-22);
+    doc.line(14, h-28, 65, h-28); doc.line(135, h-28, 186, h-28);
+    doc.save(`${student.name || "fee"}_${month}.pdf`);
+  }
+
+  function subjectsForStudent(student){
+    const level = Number(student.level || 0);
+    if(level >= 11){
+      return ["English","Hindi","Physics","Chemistry","Mathematics","Computer"];
+    }
+    if(level >= 9){
+      return ["English","Hindi","Mathematics","Science","Social Science","Computer"];
+    }
+    if(level >= 6){
+      return ["English","Hindi","Mathematics","Science","Social Science","Computer"];
+    }
+    return ["English","Hindi","Mathematics","EVS","Computer"];
+  }
+
+  function buildDefaultMarksheet(student){
+    return {
+      studentId: student.id,
+      note: "Board style mark sheet",
+      subjects: subjectsForStudent(student).map((subject, i) => {
+        const theory = Math.max(35, 78 - i * 3);
+        const practical = ["Physics","Chemistry","Computer","Science","EVS"].includes(subject) ? 18 : 0;
+        return { subject, theory, practical, maxTheory: 80, maxPractical: 20 };
+      })
+    };
+  }
+
+  function ensureMarksheets(){
+    const studentIds = new Set(students.map(s => s.id));
+    marksheets = marksheets.filter(m => studentIds.has(m.studentId));
+    students.forEach(s => {
+      if(!marksheets.some(m => m.studentId === s.id)){
+        marksheets.push(buildDefaultMarksheet(s));
+      }
+    });
+    saveMarks();
+  }
+
+  function getMarksheet(studentId){
+    let ms = marksheets.find(m => m.studentId === studentId);
+    if(!ms){
+      const student = students.find(s => s.id === studentId);
+      if(!student) return null;
+      ms = buildDefaultMarksheet(student);
+      marksheets.unshift(ms);
+      saveMarks();
+    }
+    return ms;
+  }
+
+  function calcRowTotal(row){ return Number(row.theory || 0) + Number(row.practical || 0); }
+  function calcPercent(subjects){
+    const total = subjects.reduce((a,s)=>a + calcRowTotal(s), 0);
+    const max = subjects.reduce((a,s)=>a + Number(s.maxTheory || 0) + Number(s.maxPractical || 0), 0) || 1;
+    return Math.round((total / max) * 100);
+  }
+  function gradeFromPercent(p){
+    if(p >= 91) return "A1";
+    if(p >= 81) return "A2";
+    if(p >= 71) return "B1";
+    if(p >= 61) return "B2";
+    if(p >= 51) return "C1";
+    if(p >= 41) return "C2";
+    return "D";
+  }
+  function resultFromPercent(p){
+    return p >= 33 ? "PASS" : "FAIL";
+  }
+
+  function render(){
+    applyTheme();
+    if(section === "landing") return renderLanding();
+    if(section === "auth") return renderAuth();
+    if(section === "studentAuth") return renderStudentAuth();
+    if(section === "studentApp") return renderStudentApp();
+    return renderApp();
+  }
+
+  function switchView(v){ section = v; render(); }
+
+  function navItems(){
+    return [
+      ["dashboard","🏠","Dashboard"],
+      ["students","👨‍🎓","Students"],
+      ["registrations","📝","Registrations"],
+      ["teachers","👩‍🏫","Teachers"],
+      ["attendance","📋","Attendance"],
+      ["fees","💰","Fees"],
+      ["results","📄","Results"],
+      ["marksheet","🧾","Marksheet"],
+      ["notices","🔔","Notices"],
+      ["timetable","🗓️","Timetable"],
+      ["library","📚","Library"],
+      ["transport","🚌","Transport"],
+      ["holidays","🎉","Holiday List"],
+      ["reports","📊","Reports"],
+      ["settings","⚙️","Settings"]
+    ];
+  }
+
+  function renderLanding(){
+    root.innerHTML = `
+      <div class="landing-shell">
+        <div class="landing">
+          <div class="landing-grid">
+            <section class="landing-hero">
+              <span class="school-badge">School Portal · ${SESSION}</span>
+              <h1>${SCHOOL_NAME}</h1>
+              <p>Complete school management portal for Nursery to 12th standard. Admission, student records, fees, attendance, results, notices, timetable, library, transport, reports and settings are managed from one place.</p>
+              <div class="feature-grid">
+                <div class="feature"><div class="t">Registration</div><div class="d">Public admission form before login.</div></div>
+                <div class="feature"><div class="t">Admin Control</div><div class="d">Edit and delete in every major module.</div></div>
+                <div class="feature"><div class="t">Back Navigation</div><div class="d">Home and back buttons available.</div></div>
+                <div class="feature"><div class="t">Mobile Friendly</div><div class="d">Responsive interface for phone and desktop.</div></div>
+              </div>
+              <div class="hero-actions">
+                <button class="btn btn-primary" id="landingRegister">New Admission</button>
+                <button class="btn btn-outline" id="landingLogin">Admin Login</button>
+                <button class="btn btn-soft" id="landingStudent">Student Login</button>
+              </div>
+            </section>
+            <aside class="landing-panel">
+              <div class="panel-card">
+                <h2>School Portal</h2>
+                <p>Professional school website layout with only relevant modules.</p>
+                <ul class="panel-list">
+                  <li><strong>Nursery to 12th</strong><span>Class-wise student management with sections.</span></li>
+                  <li><strong>Fees & Results</strong><span>Editable records with actions.</span></li>
+                  <li><strong>Attendance</strong><span>Daily and monthly tracking.</span></li>
+                  <li><strong>Notice Board</strong><span>Holiday, exam and PTM notices.</span></li>
+                </ul>
+                <div class="inline-actions">
+                  <button class="btn btn-soft" id="openFeatures">View Features</button>
+                  <button class="btn btn-outline" id="openPortal">Open Portal</button>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById("landingRegister").onclick = () => { regMode = true; studentMode = false; switchView("auth"); };
+    document.getElementById("landingLogin").onclick = () => { regMode = false; studentMode = false; switchView("auth"); };
+    const landingStudent = document.getElementById("landingStudent"); if(landingStudent) landingStudent.onclick = () => { regMode = false; studentMode = true; switchView("auth"); };
+    document.getElementById("openPortal").onclick = () => { regMode = false; studentMode = false; switchView("auth"); };
+    document.getElementById("openFeatures").onclick = () => alert("Admissions, students, attendance, fees, results, marksheet, notices, timetable, library, transport and reports.");
+  }
+
+
+  function renderAuth(){
+    root.innerHTML = `
+      <div class="auth-shell">
+        <div class="auth-card">
+          <div class="auth-head">
+            <button class="btn btn-outline" id="authBack">← Back</button>
+            <h2>${studentMode ? "Student Login" : regMode ? "Student Registration" : "Admin Login"}</h2>
+            <p>${studentMode ? "Students can only view their own profile." : regMode ? "Verify OTP before submitting a registration request." : "Log in to open the admin dashboard."}</p>
+          </div>
+          <div class="auth-body">
+            ${studentMode ? `
+              <div class="field"><label>Admission No.</label><input id="studentLoginAdm" placeholder="Enter admission no."></div>
+              <div class="field"><label>Date of Birth</label><input id="studentLoginDob" type="date"></div>
+              <button class="btn btn-primary" id="studentLoginBtn">Student Login</button>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button class="btn btn-outline" id="goAdmin">Admin Login</button>
+                <button class="btn btn-soft" id="goHome">Home</button>
+              </div>
+              <div class="help">Student access is view-only. No edit or delete buttons will appear.</div>
+            ` : regMode ? `
+              <div class="field"><label>Student Name</label><input id="rName"></div>
+              <div class="field"><label>Mobile</label><input id="rMobile" inputmode="numeric" maxlength="10"></div>
+              <div class="field"><label>Apply For Class</label><select id="rApply"></select></div>
+              <div class="field"><label>Parent / Guardian</label><input id="rParent"></div>
+              <div class="field"><label>Address</label><textarea id="rAddress"></textarea></div>
+              <div class="field"><label>Previous School / Note</label><textarea id="rNote"></textarea></div>
+              <div class="field">
+                <label>OTP Verification</label>
+                <div class="otp-box">
+                  <button class="btn btn-soft" id="sendOtp">Send OTP</button>
+                  <button class="btn btn-outline" id="verifyOtp">Verify OTP</button>
+                </div>
+                <div class="otp-note" id="otpNote">OTP will be displayed only in this demo portal. In production it should be sent by SMS.</div>
+              </div>
+              <div class="field"><label>Enter OTP</label><input id="rOtp" placeholder="6-digit OTP"></div>
+              <button class="btn btn-primary" id="submitReg">Submit Registration</button>
+              <div class="help">After verification, the registration will be saved in the registrations section.</div>
+            ` : `
+              <div class="field"><label>Admin Login ID</label><input id="loginUser" placeholder="Enter login ID"></div>
+              <div class="field"><label>Admin Password</label><input id="loginPass" type="password" placeholder="Enter password"></div>
+              <button class="btn btn-primary" id="loginBtn">Login to Portal</button>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button class="btn btn-outline" id="goReg">New Admission</button>
+                <button class="btn btn-soft" id="goStudent">Student Login</button>
+                <button class="btn btn-soft" id="goHome">Home</button>
+              </div>
+              <div class="help">Credentials are hidden on the screen.</div>
+            `}
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById("authBack").onclick = () => switchView("landing");
+    if(studentMode){
+      document.getElementById("studentLoginBtn").onclick = () => {
+        const adm = document.getElementById("studentLoginAdm").value.trim();
+        const dob = document.getElementById("studentLoginDob").value;
+        const st = students.find(s => (s.admissionNo || "").trim().toLowerCase() === adm.toLowerCase() && String(s.dob || "") === String(dob || ""));
+        if(!st){ alert("Admission no. ya date of birth galat hai."); return; }
+        studentLoggedIn = true;
+        studentSessionId = st.id;
+        saveStudentSession();
+        switchView("studentApp");
+      };
+      document.getElementById("goAdmin").onclick = () => { studentMode = false; regMode = false; renderAuth(); };
+      document.getElementById("goHome").onclick = () => switchView("landing");
+    } else if(regMode){
+      const apply = document.getElementById("rApply");
+      apply.innerHTML = levels.map(v=>`<option value="${v}">${v}</option>`).join("");
+      document.getElementById("sendOtp").onclick = () => {
+        const phone = document.getElementById("rMobile").value.trim();
+        if(!phone || phone.length < 10){
+          alert("Enter a valid mobile number first.");
+          return;
+        }
+        otpState.phone = phone;
+        otpState.code = String(Math.floor(100000 + Math.random()*900000));
+        otpState.sent = true;
+        otpState.verified = false;
+        document.getElementById("otpNote").textContent = "Demo OTP: " + otpState.code;
+      };
+      document.getElementById("verifyOtp").onclick = () => {
+        const entered = document.getElementById("rOtp").value.trim();
+        otpState.verified = otpState.sent && entered === otpState.code;
+        document.getElementById("otpNote").textContent = otpState.verified ? "OTP verified successfully." : "OTP verification failed.";
+      };
+      document.getElementById("submitReg").onclick = () => {
+        const data = {
+          id: Date.now(),
+          name: document.getElementById("rName").value.trim(),
+          mobile: document.getElementById("rMobile").value.trim(),
+          applyFor: document.getElementById("rApply").value,
+          parent: document.getElementById("rParent").value.trim(),
+          address: document.getElementById("rAddress").value.trim(),
+          note: document.getElementById("rNote").value.trim(),
+          date: new Date().toISOString().slice(0,10),
+          status: "Pending",
+          verified: otpState.verified
+        };
+        if(!data.name || !data.mobile || !data.applyFor || !data.parent){
+          alert("Enter name, mobile, class and parent name.");
+          return;
+        }
+        if(!otpState.verified){
+          alert("Verify OTP before submitting.");
+          return;
+        }
+        registrations.unshift(data);
+        saveRegs();
+        alert("Registration submitted.");
+        regMode = false;
+        otpState = { code:"", verified:false, sent:false, phone:"" };
+        switchView("landing");
+      };
+    } else {
+      document.getElementById("loginBtn").onclick = () => {
+        const u = document.getElementById("loginUser").value.trim();
+        const p = document.getElementById("loginPass").value.trim();
+        if(u === (adminAuth.user || ADMIN_USER) && p === (adminAuth.pass || ADMIN_PASS)){
+          localStorage.setItem(LS_LOGIN, "1");
+          loggedIn = true;
+          studentLoggedIn = false;
+          studentSessionId = 0;
+          saveStudentSession();
+          switchView("app");
+        } else {
+          alert("Wrong credentials.");
+        }
+      };
+      document.getElementById("goReg").onclick = () => { regMode = true; studentMode = false; renderAuth(); };
+      document.getElementById("goStudent").onclick = () => { regMode = false; studentMode = true; renderAuth(); };
+      document.getElementById("goHome").onclick = () => switchView("landing");
+    }
+  }
+
+  function renderStudentApp(){
+    const st = students.find(s => s.id === studentSessionId);
+    if(!st){
+      studentLoggedIn = false;
+      studentSessionId = 0;
+      saveStudentSession();
+      switchView("landing");
+      return;
+    }
+    const ms = getMarksheet(st.id);
+    const subjects = ms?.subjects || [];
+    const percent = calcPercent(subjects);
+    const grade = gradeFromPercent(percent);
+    const result = resultFromPercent(percent);
+    const paid = feePaidTotal(st.id);
+    const due = feeDueTotal(st.id);
+    const feeRows = feeRecordsForStudent(st.id).sort((a,b)=>String(b.month).localeCompare(String(a.month)));
+    root.innerHTML = `
+      <div class="app-shell">
+        <main class="content" style="width:100%">
+          <div class="topbar">
+            <div class="topbar-inner">
+              <div class="top-left">
+                <button class="hamburger" id="toggleSidebar">☰</button>
+                <div class="page-title">
+                  <h2>Student Portal</h2>
+                  <p>View-only access for your own profile</p>
+                </div>
+              </div>
+              <div class="top-right">
+                <div class="search"><span>🔎</span><input id="searchInput" disabled value="${st.name}"></div>
+                <button class="btn btn-outline" id="homeBtn">Home</button>
+                <button class="btn btn-soft" id="themeToggleTop">Dark / Light</button>
+                <button class="btn btn-danger" id="logoutBtn">Logout</button>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <section class="hero">
+              <div class="hero-grid">
+                <div>
+                  <span class="tag">Student Dashboard</span>
+                  <h3>${st.name}</h3>
+                  <p>Admission No. ${st.admissionNo} · Class ${st.level}-${st.section} · Roll ${st.rollNo}</p>
+                </div>
+                <div class="hero-cards">
+                  <div class="glass"><div class="l">DOB</div><div class="v">${st.dob || "-"}</div><div class="d">Password for student login</div></div>
+                  <div class="glass"><div class="l">Fee Status</div><div class="v">${st.feeStatus || "Due"}</div><div class="d">Monthly fee access only</div></div>
+                  <div class="glass" style="grid-column:1/-1"><div class="l">Result</div><div class="v">${percent}%</div><div class="d">${grade} / ${result}</div></div>
+                </div>
+              </div>
+            </section>
+
+            <div class="section-grid">
+              <div class="card">
+                <div class="card-head"><div><h4>Profile</h4><p>Your own details</p></div></div>
+                <div class="card-body">
+                  <div class="table-wrap">
+                    <table style="min-width:100%">
+                      <tbody>
+                        <tr><th>Name</th><td>${st.name}</td></tr>
+                        <tr><th>Admission No.</th><td>${st.admissionNo}</td></tr>
+                        <tr><th>DOB</th><td>${st.dob || "-"}</td></tr>
+                        <tr><th>Class</th><td>${st.level}-${st.section}</td></tr>
+                        <tr><th>Roll No.</th><td>${st.rollNo}</td></tr>
+                        <tr><th>Father Name</th><td>${st.fatherName || "-"}</td></tr>
+                        <tr><th>Mother Name</th><td>${st.motherName || "-"}</td></tr>
+                        <tr><th>Mobile</th><td>${st.mobile || "-"}</td></tr>
+                        <tr><th>Attendance</th><td>${st.attendance || 0}%</td></tr>
+                        <tr><th>Status</th><td>${st.status || "-"}</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-head"><div><h4>Marksheet</h4><p>View only</p></div></div>
+                <div class="card-body">
+                  <div class="table-wrap">
+                    <table>
+                      <thead><tr><th>Subject</th><th>Theory</th><th>Practical</th><th>Total</th><th>Max</th><th>%</th><th>Grade</th></tr></thead>
+                      <tbody>
+                        ${subjects.map((s,i)=>{ const total = rowTotal(s); const max = Number(s.maxTheory || 0) + Number(s.maxPractical || 0); const p = max ? Math.round(total / max * 100) : 0; return `<tr><td>${s.subject}</td><td>${s.theory || 0}</td><td>${s.practical || 0}</td><td>${total}</td><td>${max}</td><td>${p}%</td><td>${gradeOf(p)}</td></tr>`; }).join("")}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div style="margin-top:12px" class="note">Total Percentage: ${percent}% · Grade: ${grade} · Result: ${result}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-grid">
+              <div class="card">
+                <div class="card-head"><div><h4>Fees</h4><p>View-only fee summary</p></div></div>
+                <div class="card-body">
+                  <div class="fee-summary">
+                    <div class="fee-stat"><div class="k">Monthly Fee</div><div class="v">₹${money(studentMonthlyFee(st))}</div></div>
+                    <div class="fee-stat"><div class="k">Paid</div><div class="v">₹${money(paid)}</div></div>
+                    <div class="fee-stat"><div class="k">Due</div><div class="v">₹${money(due)}</div></div>
+                    <div class="fee-stat"><div class="k">Records</div><div class="v">${feeRows.length}</div></div>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead><tr><th>Month</th><th>Due</th><th>Paid</th><th>Balance</th><th>Status</th></tr></thead>
+                      <tbody>${feeRows.map(r => `<tr><td>${r.month}</td><td>₹${money(r.due)}</td><td>₹${money(r.paid)}</td><td>₹${money(r.balance)}</td><td>${r.status}</td></tr>`).join("")}</tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-head"><div><h4>Notifications</h4><p>Read only</p></div></div>
+                <div class="card-body">
+                  ${notices.slice(0,4).map(n => `<div class="notice"><h5>${n.title}</h5><p>${n.desc}</p></div>`).join("")}
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>`;
+    document.getElementById("themeToggleTop").onclick = toggleTheme;
+    document.getElementById("homeBtn").onclick = () => { studentLoggedIn = false; studentSessionId = 0; saveStudentSession(); switchView("landing"); };
+    document.getElementById("logoutBtn").onclick = () => {
+      studentLoggedIn = false;
+      studentSessionId = 0;
+      saveStudentSession();
+      switchView("landing");
+    };
+  }
+
+  function renderApp(){
+    const total = students.length;
+    const activeCount = students.filter(s=>s.status === "Active").length;
+    const dueCount = students.filter(s=>s.fee !== "Paid").length;
+    const avgAttendance = Math.round(students.reduce((a,s)=>a + Number(s.attendance || 0),0) / Math.max(students.length,1));
+    const collection = students.filter(s=>s.fee === "Paid").length * 12500 + students.filter(s=>s.fee === "Partial").length * 6000;
+    const classList = ["all", ...levels];
+    const filteredStudents = students.filter(s => {
+      const q = search.trim().toLowerCase();
+      const hay = [s.name,s.admissionNo,s.level,s.section,s.rollNo,s.fatherName,s.motherName,s.mobile,s.address,s.remark, s.monthlyFee].join(" ").toLowerCase();
+      return (!q || hay.includes(q)) && (filterLevel === "all" || s.level === filterLevel);
+    });
+
+    root.innerHTML = `
+      <div class="app-shell">
+        <aside class="sidebar ${sidebarOpen ? "open" : ""}" id="sidebar">
+          <div class="sidebar-head">
+            <div class="brand">
+              <div class="logo">🏫</div>
+              <div>
+                <h1>${SCHOOL_NAME}</h1>
+                <p>Premium School Portal</p>
+              </div>
+            </div>
+            <div class="school-meta">
+              <div class="year">Academic Session ${SESSION}</div>
+              <div class="name">${SCHOOL_NAME}</div>
+              <div class="desc">Nursery to 12th class records, fees, attendance and results.</div>
+            </div>
+          </div>
+          <div class="nav">
+            ${navItems().map(([k,ico,label]) => `
+              <button class="${activeTab===k ? "active" : ""}" data-nav="${k}">
+                <span class="ico">${ico}</span><span>${label}</span>
+              </button>`).join("")}
+          </div>
+          <div class="sidebar-foot">
+            <div class="mini-status">
+              <div class="row"><span>Students</span><strong>${total}</strong></div>
+              <div class="row"><span>Teachers</span><strong>${teachers.length}</strong></div>
+              <div class="row"><span>Fee Pending</span><strong>${dueCount}</strong></div>
+              <div class="row"><span>Attendance</span><strong>${avgAttendance}%</strong></div>
+            </div>
+          </div>
+        </aside>
+
+        <main class="content">
+          <div class="topbar">
+            <div class="topbar-inner">
+              <div class="top-left">
+                <button class="hamburger" id="toggleSidebar">☰</button>
+                <div class="page-title">
+                  <h2>${title(activeTab)}</h2>
+                  <p>${subtitle(activeTab)}</p>
+                </div>
+              </div>
+              <div class="top-right">
+                <div class="search">
+                  <span>🔎</span>
+                  <input id="searchInput" placeholder="Search students, marksheet, notices..." value="${search}">
+                </div>
+                <button class="btn btn-outline" id="hideShowBtn">${sidebarOpen ? "Hide Panel" : "Show Panel"}</button>
+                <button class="btn btn-outline" id="homeBtn">Home</button>
+                <button class="btn btn-outline" id="backBtn">Back</button>
+                <button class="btn btn-soft" id="exportBtn">Export JSON</button>
+                <button class="btn btn-outline" id="themeBtn">${theme === "dark" ? "Light" : "Dark"}</button>
+                <button class="btn btn-danger" id="logoutBtn">Logout</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            ${contentSection(total, activeCount, dueCount, avgAttendance, collection, classList, filteredStudents)}
+            <div class="footer">${SCHOOL_NAME} · Session ${SESSION}</div>
+          </div>
+        </main>
+      </div>
+    `;
+
+    document.getElementById("toggleSidebar").onclick = () => { sidebarOpen = !sidebarOpen; renderApp(); };
+    const themeBtn = document.getElementById("themeBtn"); if(themeBtn) themeBtn.onclick = toggleTheme;
+    document.getElementById("hideShowBtn").onclick = () => { sidebarOpen = !sidebarOpen; renderApp(); };
+    document.getElementById("homeBtn").onclick = () => { activeTab = "dashboard"; renderApp(); };
+    document.getElementById("backBtn").onclick = () => {
+      if(activeTab !== "dashboard"){ activeTab = "dashboard"; renderApp(); }
+      else switchView("landing");
+    };
+    document.getElementById("themeBtn").onclick = toggleTheme;
+    document.getElementById("logoutBtn").onclick = () => { localStorage.removeItem(LS_LOGIN); loggedIn = false; switchView("landing"); };
+    document.getElementById("exportBtn").onclick = () => {
+      const blob = new Blob([JSON.stringify({students, registrations, teachers, marksheets, classFees, feeRecords}, null, 2)], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "school-portal-data.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    const si = document.getElementById("searchInput");
+    if(si) si.oninput = (e) => { search = e.target.value; renderApp(); };
+
+    document.querySelectorAll("[data-nav]").forEach(btn => {
+      btn.onclick = () => { activeTab = btn.getAttribute("data-nav"); renderApp(); if(window.innerWidth < 1180){ sidebarOpen = false; renderApp(); } };
+    });
+
+    bindButtons();
+    if(["dashboard","students","registrations","teachers","attendance","fees","results","marksheet","notices","timetable","library","transport","holidays","reports","settings"].includes(activeTab)) renderTables();
+  }
+
+  function title(tab){
+    return {
+      dashboard:"Dashboard",
+      students:"Students",
+      registrations:"Registrations",
+      teachers:"Teachers",
+      attendance:"Attendance",
+      fees:"Fees",
+      results:"Results",
+      marksheet:"Marksheet",
+      notices:"Notices",
+      timetable:"Timetable",
+      library:"Library",
+      transport:"Transport",
+      holidays:"Holiday List",
+      reports:"Reports",
+      settings:"Settings"
+    }[tab] || "Dashboard";
+  }
+
+  function subtitle(tab){
+    return {
+      dashboard:"Complete school overview",
+      students:"Manage Nursery to 12th student records",
+      registrations:"New admission requests with OTP verification",
+      teachers:"Teacher and staff records",
+      attendance:"Daily and monthly attendance",
+      fees:"Fee collection and due management",
+      results:"Exam and report card area",
+      marksheet:"Board-style marksheet editor and PDF",
+      notices:"School notices and circulars",
+      timetable:"Daily class routine",
+      library:"Book issue and return",
+      transport:"Bus routes and transport list",
+      holidays:"Holiday calendar",
+      reports:"Printable school reports",
+      settings:"Portal settings"
+    }[tab] || "";
+  }
+
+  function contentSection(total, activeCount, dueCount, avgAttendance, collection, classList, filteredStudents){
+    const q = search.trim().toLowerCase();
+    const filteredNotices = notices.filter(n => !q || [n.title,n.desc].join(" ").toLowerCase().includes(q));
+    const filteredTimetable = timetable.filter(t => !q || [t[0],t[1],t[2]].join(" ").toLowerCase().includes(q));
+    const filteredFees = feeHeads.filter(f => !q || [f[0],f[1]].join(" ").toLowerCase().includes(q));
+    const filteredMarksheets = students.filter(s => !q || [s.name,s.admissionNo,s.level,s.section,s.rollNo,s.fatherName,s.motherName].join(" ").toLowerCase().includes(q));
+    if(activeTab === "dashboard"){
+      return `
+        <section class="hero">
+          <div class="hero-grid">
+            <div>
+              <span class="tag">Premium School Portal</span>
+              <h3>School management in one clean dashboard.</h3>
+              <p>Admission, student data, attendance, fees, results, notices, timetable, library, transport, reports and settings are managed from a single interface.</p>
+              <div class="hero-actions">
+                <button class="btn btn-primary" data-nav="students">+ Add Student</button>
+                <button class="btn btn-outline" data-nav="registrations">View Registrations</button>
+                <button class="btn btn-outline" data-nav="reports">Open Reports</button>
+                <button class="btn btn-soft" data-nav="marksheet">Open Marksheet Studio</button>
+                <button class="btn btn-soft" data-nav="fees">Open Fees</button>
+              </div>
+            </div>
+            <div class="hero-cards">
+              <div class="glass"><div class="l">Session</div><div class="v">${SESSION}</div><div class="d">Academic batch</div></div>
+              <div class="glass"><div class="l">Portal</div><div class="v">Ready</div><div class="d">Clean and professional</div></div>
+              <div class="glass" style="grid-column:1/-1"><div class="l">Average Attendance</div><div class="v">${avgAttendance}%</div><div class="d">School-wide summary</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stats">
+          <div class="stat"><div><div class="k">Total Students</div><div class="v">${total}</div><div class="c">Active records</div></div><div class="icon-badge">👨‍🎓</div></div>
+          <div class="stat"><div><div class="k">Active Students</div><div class="v">${activeCount}</div><div class="c">Current session</div></div><div class="icon-badge">📘</div></div>
+          <div class="stat"><div><div class="k">Fee Collection</div><div class="v">₹${money(collection)}</div><div class="c">This month</div></div><div class="icon-badge">💰</div></div>
+          <div class="stat"><div><div class="k">Fee Pending</div><div class="v">${dueCount}</div><div class="c">Follow-up needed</div></div><div class="icon-badge">⏳</div></div>
+        </section>
+
+        <div class="grid-3">
+          <div class="small-card">
+            <h5>Quick Modules</h5>
+            <p>Admission, fee receipt, attendance register, exam marks, timetable, library, transport and notice board.</p>
+            <div class="pill-list">
+              <span class="pill">Admission</span><span class="pill">Attendance</span><span class="pill">Fees</span><span class="pill">Results</span><span class="pill">Library</span><span class="pill">Transport</span>
+            </div>
+          </div>
+          <div class="small-card">
+            <h5>Today’s Snapshot</h5>
+            <div class="progress-wrap">
+              <div class="progress-row"><div class="progress-head"><span>Attendance</span><b>${avgAttendance}%</b></div><div class="meter"><div style="width:${avgAttendance}%"></div></div></div>
+              <div class="progress-row"><div class="progress-head"><span>Fee Pending</span><b>${dueCount}</b></div><div class="meter"><div style="width:${Math.round(dueCount/Math.max(total,1)*100)}%;background:linear-gradient(90deg,var(--warning),#fb7185)"></div></div></div>
+            </div>
+          </div>
+          <div class="small-card">
+            <h5>School Identity</h5>
+            <p><b>${SCHOOL_NAME}</b><br>Session ${SESSION}<br>Admin controls available in portal.</p>
+          </div>
+        </div>
+
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Student Management</h4><p>Nursery to 12th records</p></div><span class="pill">${filteredStudents.length} visible</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                  <select class="select" id="filterLevel">
+                    ${classList.map(v => `<option value="${v}" ${filterLevel===v?"selected":""}>${v==="all"?"All Levels":"Level "+v}</option>`).join("")}
+                  </select>
+                  <button class="btn btn-primary" id="addStudentBtn">+ Add Student</button>
+                </div>
+                <button class="btn btn-outline" data-nav="students">Open Full Student Section</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th><th>Admission No.</th><th>Level</th><th>Section</th><th>Roll</th><th>Status</th><th>Fee</th><th>Attendance</th><th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="studentBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><div><h4>Notices & Routine</h4><p>School circulars and daily timetable</p></div></div>
+            <div class="card-body">
+              ${filteredNotices.map(n => `<div class="notice"><h5>${n.title}</h5><p>${n.desc}</p></div>`).join("")}
+              <div style="height:14px"></div>
+              <div class="list-grid">
+                ${filteredTimetable.map(t => `<div class="list-item"><div><div style="font-weight:900">${t[1]}</div><div class="small">${t[2]}</div></div><span class="pill">${t[0]}</span></div>`).join("")}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if(activeTab === "students"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Students</h4><p>Class-wise and section-wise management</p></div><span class="pill">${filteredStudents.length} records</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                  <select class="select" id="filterLevel">
+                    ${classList.map(v => `<option value="${v}" ${filterLevel===v?"selected":""}>${v==="all"?"All Levels":"Level "+v}</option>`).join("")}
+                  </select>
+                  <button class="btn btn-primary" id="addStudentBtn">+ Add Student</button>
+                </div>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th><th>Admission No.</th><th>Father</th><th>Level</th><th>Section</th><th>Roll</th><th>Status</th><th>Fee</th><th>Attendance</th><th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="studentBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Summary</h4><p>Current session</p></div></div>
+            <div class="card-body">
+              <div class="progress-wrap">
+                <div class="progress-row"><div class="progress-head"><span>Active Students</span><b>${activeCount}/${total}</b></div><div class="meter"><div style="width:${Math.round(activeCount/Math.max(total,1)*100)}%"></div></div></div>
+                <div class="progress-row"><div class="progress-head"><span>Fee Pending</span><b>${dueCount}</b></div><div class="meter"><div style="width:${Math.round(dueCount/Math.max(total,1)*100)}%;background:linear-gradient(90deg,var(--warning),#fb7185)"></div></div></div>
+                <div class="progress-row"><div class="progress-head"><span>Average Attendance</span><b>${avgAttendance}%</b></div><div class="meter"><div style="width:${avgAttendance}%"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if(activeTab === "registrations"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Registrations</h4><p>OTP verified admission requests</p></div><span class="pill">${registrations.length} requests</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" id="newAdmissionBtn">New Admission</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th><th>Mobile</th><th>Apply For</th><th>Parent</th><th>Date</th><th>Status</th><th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="regBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Admission Note</h4><p>Public form with OTP verification</p></div></div>
+            <div class="card-body">
+              <div class="note">A registration can only be submitted after OTP verification. The request can later be approved into a student record.</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if(activeTab === "teachers"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Teachers</h4><p>Editable staff records</p></div><span class="pill">${teachers.length} staff</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" id="addTeacherBtn">+ Add Teacher</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th><th>Subject</th><th>Classes</th><th>Status</th><th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="teacherBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Teacher Module</h4><p>Profile and management</p></div></div>
+            <div class="card-body">
+              <div class="note">Teacher records can be edited or deleted from this section. Salary, leave and qualification can be added later if needed.</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "attendance"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Attendance</h4><p>Monthly attendance with edit/delete control</p></div><span class="pill">${students.length} students</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                  <button class="btn btn-primary" id="addAttendanceStudentBtn">+ Add Student</button>
+                  <button class="btn btn-outline" data-nav="students">Open Students</button>
+                </div>
+                <div class="pill">Edit opens student profile</div>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Student</th><th>Class</th><th>Attendance</th><th>Status</th><th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="attendanceBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Attendance Summary</h4><p>Quick monthly view</p></div></div>
+            <div class="card-body">
+              <div class="progress-wrap">
+                <div class="progress-row"><div class="progress-head"><span>Average Attendance</span><b>${avgAttendance}%</b></div><div class="meter"><div style="width:${avgAttendance}%"></div></div></div>
+                <div class="progress-row"><div class="progress-head"><span>Active Students</span><b>${activeCount}/${total}</b></div><div class="meter"><div style="width:${Math.round(activeCount/Math.max(total,1)*100)}%"></div></div></div>
+              </div>
+              <div style="height:14px"></div>
+              <div class="note">Use Edit to open student records and change attendance, fee status, section or any other profile data. Delete removes the student record.</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "fees"){
+      const feeStudents = students.filter(s => !q || [s.name,s.admissionNo,s.level,s.section,s.rollNo,s.fatherName,s.motherName].join(" ").toLowerCase().includes(q));
+      const month = feeMonthSelection || currentMonth();
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Monthly Fee Manager</h4><p>Search, edit, add and delete fee records</p></div><span class="pill">${feeStudents.length} students</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                  <button class="btn btn-soft" id="addFeeBtn">+ Add Fee Entry</button>
+                  <button class="btn btn-outline" id="printFeeReportBtn">Print Report</button>
+                  <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                  <input class="select" id="feeSearchInput" style="min-width:220px" placeholder="Search by student name" value="${feeSearchTerm}">
+                  <div class="pill">Selected month: ${month}</div>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Student</th><th>Class</th><th>Monthly Fee</th><th>Total Paid</th><th>Total Due</th><th>Status</th><th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="feeBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Class Fee Setup</h4><p>Edit monthly fee per class</p></div></div>
+            <div class="card-body">
+              <div class="fee-setup-grid">
+                ${levels.filter(v => v !== "all").map(level => `
+                  <div class="list-item" style="margin-bottom:10px">
+                    <div>
+                      <div style="font-weight:900">Class ${level}</div>
+                      <div class="small">${students.filter(s=>s.level===level).length} students</div>
+                    </div>
+                    <div><b>₹${money(classFees[level] || 0)}</b></div>
+                    <button class="btn btn-soft classFeeEdit" data-level="${level}">Edit</button>
+                  </div>
+                `).join("")}
+              </div>
+              <div style="height:14px"></div>
+              <div class="note">Class-wise monthly fee can be changed anytime. Student fee ledger will use this amount as default.</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "results"){
+      return `
+        <div class="grid-3">
+          <div class="small-card"><h5>Marks Entry</h5><p>Subject-wise marks can be added or edited.</p></div>
+          <div class="small-card"><h5>Report Card</h5><p>Printable report cards with school header.</p></div>
+          <div class="small-card"><h5>Merit List</h5><p>Top students and rank list generation.</p></div>
+        </div>
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Result Panel</h4><p>Student-wise result and marksheet access</p></div><span class="pill">${students.length} students</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" data-nav="marksheet">Open Marksheet Studio</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="list-grid">
+                ${students.map(s => `
+                  <div class="list-item">
+                    <div><div style="font-weight:900">${s.name}</div><div class="small">Level ${s.level}-${s.section} · Roll ${s.rollNo}</div></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                      <span class="pill">${Math.min(100, 60 + Math.round(s.attendance/2))}%</span>
+                      <button class="btn btn-soft resultEdit" data-id="${s.id}">Edit</button>
+                      <button class="btn btn-danger resultDelete" data-id="${s.id}">Delete</button>
+                      <button class="btn btn-primary resultPdf" data-id="${s.id}">PDF</button>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Result Summary</h4><p>Current snapshot</p></div></div>
+            <div class="card-body">
+              <div class="progress-wrap">
+                <div class="progress-row"><div class="progress-head"><span>Pass Percentage</span><b>92%</b></div><div class="meter"><div style="width:92%"></div></div></div>
+                <div class="progress-row"><div class="progress-head"><span>Top Performers</span><b>5</b></div><div class="meter"><div style="width:78%"></div></div></div>
+              </div>
+              <div style="height:14px"></div>
+              <div class="note">Edit opens the student record. PDF opens the board-style marksheet download for that student.</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if(activeTab === "marksheet"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Marksheet Studio</h4><p>Board-style marks for every student</p></div><span class="pill">${filteredMarksheets.length} students</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <div class="tiny">Use Edit to open subject-wise marks. Use PDF to download the board-style marksheet.</div>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Student</th><th>Class</th><th>Roll</th><th>Subjects</th><th>Percentage</th><th>Result</th><th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="marksheetBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>How it works</h4><p>Simple PDF flow</p></div></div>
+            <div class="card-body">
+              <div class="stack">
+                <div class="note">Open a student marksheet, edit subject names and marks, remove any subject row you do not need, then save.</div>
+                <div class="note">The download button creates a clean board-style PDF with school name, session, subject table, total, percentage and grade.</div>
+                <div class="note">Search works here too — type student name, admission number, class or roll no. to filter the marksheet list.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "notices"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Notice Board</h4><p>Editable circulars, add and delete supported</p></div><span class="pill">${notices.length} notices</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" id="addNoticeBtn">+ Add Notice</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="noticeList">
+                ${notices.map(n => `
+                  <div class="notice">
+                    <div style="display:flex;justify-content:space-between;gap:12px;align-items:start">
+                      <div>
+                        <h5>${n.title}</h5>
+                        <p>${n.desc}</p>
+                      </div>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <button class="btn btn-soft noticeEdit" data-id="${n.id}">Edit</button>
+                        <button class="btn btn-danger noticeDelete" data-id="${n.id}">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Notice Tools</h4><p>Communication modules</p></div></div>
+            <div class="card-body"><div class="note">Holiday notices, exam notices, PTM updates and principal messages can be managed here.</div></div>
+          </div>
+        </div>
+      `;
+    }
+
+    if(activeTab === "timetable"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Timetable</h4><p>Editable daily class routine</p></div><span class="pill">${timetable.length} periods</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" id="addPeriodBtn">+ Add Period</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="list-grid">
+                ${timetable.map((t,i) => `
+                  <div class="list-item">
+                    <div><div style="font-weight:900">${t[1]}</div><div class="small">${t[2]}</div></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                      <span class="pill">${t[0]}</span>
+                      <button class="btn btn-soft ttEdit" data-id="${i}">Edit</button>
+                      <button class="btn btn-danger ttDelete" data-id="${i}">Delete</button>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Period Notes</h4><p>Routine planning</p></div></div>
+            <div class="card-body"><div class="note">Morning assembly, sports, practicals and exam slots can be arranged here.</div></div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "library"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Library</h4><p>Issue, return, add, edit and delete</p></div><span class="pill">${libraryItems.length} items</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" id="addLibraryBtn">+ Add Item</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="list-grid">
+                ${libraryItems.map(item => `
+                  <div class="list-item">
+                    <div><div style="font-weight:900">${item.title}</div><div class="small">${item.info}</div></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                      <span class="badge ${item.status === "Issued" ? "partial" : item.status === "Returned" ? "paid" : "active"}">${item.status}</span>
+                      <button class="btn btn-soft libEdit" data-id="${item.id}">Edit</button>
+                      <button class="btn btn-danger libDelete" data-id="${item.id}">Delete</button>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Library Note</h4><p>Book catalogue</p></div></div>
+            <div class="card-body"><div class="note">Books, issue note, return note and status are editable from here.</div></div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "transport"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Transport</h4><p>Bus route and student allocation management</p></div><span class="pill">${transportItems.length} items</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" id="addTransportBtn">+ Add Item</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="list-grid">
+                ${transportItems.map(item => `
+                  <div class="list-item">
+                    <div><div style="font-weight:900">${item.title}</div><div class="small">${item.info}</div></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                      <span class="badge ${item.status === "Active" ? "paid" : "partial"}">${item.status}</span>
+                      <button class="btn btn-soft trEdit" data-id="${item.id}">Edit</button>
+                      <button class="btn btn-danger trDelete" data-id="${item.id}">Delete</button>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Transport Note</h4><p>Route details</p></div></div>
+            <div class="card-body"><div class="note">Bus number, route, pickup point, driver and student allocation can be stored.</div></div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "holidays"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Holiday List</h4><p>Academic calendar with add/edit/delete</p></div><span class="pill">${holidayItems.length} holidays</span></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" id="addHolidayBtn">+ Add Holiday</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="list-grid">
+                ${holidayItems.map(h => `
+                  <div class="list-item">
+                    <div><div style="font-weight:900">${h.title}</div><div class="small">${h.date}</div></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                      <span class="pill">Holiday</span>
+                      <button class="btn btn-soft holEdit" data-id="${h.id}">Edit</button>
+                      <button class="btn btn-danger holDelete" data-id="${h.id}">Delete</button>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Holiday Note</h4><p>School calendar</p></div></div>
+            <div class="card-body"><div class="note">Exams, PTM, sports day, annual function and unit tests can be added to the school calendar.</div></div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "reports"){
+      return `
+        <div class="grid-3">
+          ${reportItems.map(r => `
+            <div class="small-card">
+              <h5>${r.title}</h5>
+              <p>${r.desc}</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+                <button class="btn btn-soft repEdit" data-id="${r.id}">Edit</button>
+                <button class="btn btn-danger repDelete" data-id="${r.id}">Delete</button>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Reports</h4><p>Printable school reports</p></div></div>
+            <div class="card-body">
+              <div class="toolbar">
+                <button class="btn btn-primary" id="addReportBtn">+ Add Report Widget</button>
+                <button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button>
+              </div>
+              <div class="progress-wrap">
+                <div class="progress-row"><div class="progress-head"><span>Attendance</span><b>${avgAttendance}%</b></div><div class="meter"><div style="width:${avgAttendance}%"></div></div></div>
+                <div class="progress-row"><div class="progress-head"><span>Fee Collection</span><b>₹${money(collection)}</b></div><div class="meter"><div style="width:${Math.min(100, Math.round((collection/200000)*100))}%"></div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Principal View</h4><p>Decision snapshot</p></div></div>
+            <div class="card-body"><div class="note">Principal dashboard can show school performance, admission count, fee status and result progress.</div></div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    if(activeTab === "settings"){
+      return `
+        <div class="section-grid">
+          <div class="card">
+            <div class="card-head"><div><h4>Settings</h4><p>Portal configuration and admin login</p></div></div>
+            <div class="card-body">
+              <div class="list-grid">
+                <div class="list-item"><div><div style="font-weight:900">School Name</div><div class="small">${SCHOOL_NAME}</div></div><span class="pill">Branding</span></div>
+                <div class="list-item"><div><div style="font-weight:900">Session</div><div class="small">${SESSION}</div></div><span class="pill">2026-27</span></div>
+                <div class="list-item"><div><div style="font-weight:900">Admin Login</div><div class="small">${adminAuth.user || ADMIN_USER}</div></div><span class="pill">Editable</span></div>
+              </div>
+              <div style="height:14px"></div>
+              <button class="btn btn-primary" id="editAdminLoginBtn">Change Admin ID / Password</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h4>Portal Controls</h4><p>Current options</p></div></div>
+            <div class="card-body">
+              <div class="toolbar"><button class="btn btn-outline" data-nav="dashboard">Back to Dashboard</button></div>
+              <div class="note">Admin login can be changed from this section. All other modules remain editable from their own pages.</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+
+    return `<div class="card"><div class="card-body">Module not found.</div></div>`;
+  }
+
+  function moduleTwoColumn(titleTxt, subTxt, leftHtml, rightHtml){
+    return `
+      <div class="section-grid">
+        <div class="card">
+          <div class="card-head"><div><h4>${titleTxt}</h4><p>${subTxt}</p></div></div>
+          <div class="card-body"><div class="list-grid">${leftHtml}</div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div><h4>Manage</h4><p>Admin actions</p></div></div>
+          <div class="card-body">${rightHtml}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderTables(){
+    // students
+    const studentBody = document.getElementById("studentBody");
+    if(studentBody){
+      const q = search.trim().toLowerCase();
+      const filtered = students.filter(s => {
+        const hay = [s.name,s.admissionNo,s.level,s.section,s.rollNo,s.fatherName,s.motherName,s.mobile,s.address,s.remark].join(" ").toLowerCase();
+        return (!q || hay.includes(q)) && (filterLevel === "all" || s.level === filterLevel);
+      });
+      studentBody.innerHTML = filtered.length ? "" : `<tr><td colspan="10" style="padding:26px;text-align:center;color:var(--muted)">No student found.</td></tr>`;
+      filtered.forEach(s => {
+        const tpl = document.getElementById("studentRow").content.cloneNode(true);
+        tpl.querySelector(".c_name").innerHTML = `<div style="font-weight:900">${s.name}</div><div class="small">${s.fatherName || ""}</div>`;
+        tpl.querySelector(".c_adm").textContent = s.admissionNo;
+        tpl.querySelector(".c_level").textContent = s.level;
+        tpl.querySelector(".c_section").textContent = s.section;
+        tpl.querySelector(".c_roll").textContent = s.rollNo;
+        const st = tpl.querySelector(".c_status"); st.textContent = s.status; st.className = `badge ${statusClass(s.status)}`;
+        const fee = tpl.querySelector(".c_fee"); fee.textContent = s.fee; fee.className = `badge ${feeClass(s.fee)}`;
+        tpl.querySelector(".c_att").innerHTML = `<div style="min-width:140px"><div class="progress-head"><span class="small">Monthly</span><b>${s.attendance}%</b></div><div class="meter"><div style="width:${s.attendance}%"></div></div></div>`;
+        tpl.querySelector(".c_action").innerHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-soft editBtn">Edit</button><button class="btn btn-danger delBtn">Delete</button></div>`;
+        studentBody.appendChild(tpl);
+        const row = studentBody.lastElementChild;
+        row.querySelector(".editBtn").onclick = () => openStudentModal(s.id);
+        row.querySelector(".delBtn").onclick = () => deleteStudent(s.id);
+      });
+      const filter = document.getElementById("filterLevel");
+      if(filter) filter.onchange = (e) => { filterLevel = e.target.value; renderApp(); };
+      const addBtn = document.getElementById("addStudentBtn");
+      if(addBtn) addBtn.onclick = () => openStudentModal(null);
+    }
+
+    // registrations
+    const regBody = document.getElementById("regBody");
+    if(regBody){
+      regBody.innerHTML = registrations.length ? "" : `<tr><td colspan="7" style="padding:26px;text-align:center;color:var(--muted)">No registration request found.</td></tr>`;
+      registrations.forEach(r => {
+        const tpl = document.getElementById("regRow").content.cloneNode(true);
+        tpl.querySelector(".r_name").textContent = r.name;
+        tpl.querySelector(".r_mobile").textContent = r.mobile;
+        tpl.querySelector(".r_apply").textContent = r.applyFor;
+        tpl.querySelector(".r_parent").textContent = r.parent;
+        tpl.querySelector(".r_date").textContent = r.date;
+        const st = tpl.querySelector(".r_status");
+        st.textContent = r.verified ? "Verified" : "Pending";
+        st.className = `badge ${r.verified ? "paid" : "partial"}`;
+        tpl.querySelector(".r_action").innerHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-soft regApprove" data-id="${r.id}">Approve</button><button class="btn btn-danger regDelete" data-id="${r.id}">Delete</button></div>`;
+        regBody.appendChild(tpl);
+        const row = regBody.lastElementChild;
+        row.querySelector(".regApprove").onclick = () => approveRegistration(r.id);
+        row.querySelector(".regDelete").onclick = () => removeRegistration(r.id);
+      });
+      const newAdmBtn = document.getElementById("newAdmissionBtn");
+      if(newAdmBtn) newAdmBtn.onclick = openRegModal;
+    }
+
+
+    // marksheets
+    const markBody = document.getElementById("marksheetBody");
+    if(markBody){
+      markBody.innerHTML = filteredMarksheets.length ? "" : `<tr><td colspan="7" style="padding:26px;text-align:center;color:var(--muted)">No marksheet found.</td></tr>`;
+      filteredMarksheets.forEach(s => {
+        const ms = getMarksheet(s.id);
+        const subjects = ms?.subjects || [];
+        const percent = calcPercent(subjects);
+        const grade = gradeFromPercent(percent);
+        const result = resultFromPercent(percent);
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><div style="font-weight:900">${s.name}</div><div class="small">${s.admissionNo}</div></td>
+          <td>${s.level}-${s.section}</td>
+          <td>${s.rollNo}</td>
+          <td>${subjects.length}</td>
+          <td>${percent}% / ${grade}</td>
+          <td><span class="badge ${result === "PASS" ? "paid" : "due"}">${result}</span></td>
+          <td>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn btn-soft msEdit" data-id="${s.id}">Edit</button>
+              <button class="btn btn-outline msReset" data-id="${s.id}">Reset</button>
+              <button class="btn btn-danger msDelete" data-id="${s.id}">Delete</button>
+              <button class="btn btn-primary msPdf" data-id="${s.id}">PDF</button>
+            </div>
+          </td>
+        `;
+        markBody.appendChild(tr);
+      });
+    }
+
+
+    // fees
+    const feeBody = document.getElementById("feeBody");
+    if(feeBody){
+      const q = (feeSearchTerm || search).trim().toLowerCase();
+      const filtered = students.filter(s => !q || [s.name,s.admissionNo,s.level,s.section,s.rollNo,s.fatherName,s.motherName].join(" ").toLowerCase().includes(q));
+      feeBody.innerHTML = filtered.length ? "" : `<tr><td colspan="7" style="padding:26px;text-align:center;color:var(--muted)">No student found.</td></tr>`;
+      filtered.forEach(s => {
+        const paid = feePaidTotal(s.id);
+        const due = feeDueTotal(s.id);
+        const bal = Math.max(0, due);
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><div style="font-weight:900">${s.name}</div><div class="small">${s.admissionNo}</div></td>
+          <td>${s.level}-${s.section}</td>
+          <td>₹${money(studentMonthlyFee(s))}</td>
+          <td>₹${money(paid)}</td>
+          <td>₹${money(bal)}</td>
+          <td><span class="badge ${bal === 0 && paid > 0 ? "paid" : paid > 0 ? "partial" : "due"}">${bal === 0 && paid > 0 ? "PAID" : paid > 0 ? "PARTIAL" : "DUE"}</span></td>
+          <td>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn btn-soft feeOpen" data-id="${s.id}">Open</button>
+              <button class="btn btn-outline feeLedger" data-id="${s.id}">Ledger</button>
+              <button class="btn btn-primary feePdf" data-id="${s.id}">PDF</button>
+              <button class="btn btn-danger feeClear" data-id="${s.id}">Delete</button>
+            </div>
+          </td>
+        `;
+        feeBody.appendChild(tr);
+      });
+    }
+
+
+    const feeClassBody = document.getElementById("feeClassBody");
+    if(feeClassBody){
+      const month = document.getElementById("feeMonthFilter")?.value || currentMonth();
+      const rows = levels.filter(v => v !== "all").map(level => {
+        const studentsInClass = students.filter(s => s.level === level);
+        const classRecords = feeRecords.filter(r => {
+          const s = students.find(x => x.id === r.studentId);
+          return s && s.level === level && r.month === month;
+        });
+        const expected = studentsInClass.reduce((a,s)=>a + studentMonthlyFee(s), 0);
+        const paid = classRecords.reduce((a,r)=>a + Number(r.paid || 0), 0);
+        const due = studentsInClass.reduce((a,s)=>a + Math.max(0, studentMonthlyFee(s) - feePaidTotal(s.id)), 0);
+        return { level, studentsInClass, expected, paid, due };
+      });
+      feeClassBody.innerHTML = rows.length ? "" : `<tr><td colspan="5" style="padding:26px;text-align:center;color:var(--muted)">No class data.</td></tr>`;
+      rows.forEach(r => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>Class ${r.level}</td><td>${r.studentsInClass.length}</td><td>₹${money(r.expected)}</td><td>₹${money(r.paid)}</td><td>₹${money(r.due)}</td>`;
+        feeClassBody.appendChild(tr);
+      });
+    }
+
+
+    // attendance
+    const attendanceBody = document.getElementById("attendanceBody");
+    if(attendanceBody){
+      attendanceBody.innerHTML = students.length ? "" : `<tr><td colspan="5" style="padding:26px;text-align:center;color:var(--muted)">No student found.</td></tr>`;
+      students.forEach(s => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><div style="font-weight:900">${s.name}</div><div class="small">${s.admissionNo}</div></td>
+          <td>${s.level}-${s.section}</td>
+          <td><div style="min-width:170px"><div class="progress-head"><span class="small">Monthly</span><b>${s.attendance}%</b></div><div class="meter"><div style="width:${s.attendance}%"></div></div></div></td>
+          <td><span class="badge ${s.attendance >= 90 ? "paid" : s.attendance >= 75 ? "partial" : "due"}">${s.attendance >= 90 ? "Excellent" : s.attendance >= 75 ? "Good" : "Low"}</span></td>
+          <td>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn btn-soft attEdit" data-id="${s.id}">Edit</button>
+              <button class="btn btn-danger attDelete" data-id="${s.id}">Delete</button>
+            </div>
+          </td>
+        `;
+        attendanceBody.appendChild(tr);
+      });
+      const addAttendanceStudentBtn = document.getElementById("addAttendanceStudentBtn");
+      if(addAttendanceStudentBtn) addAttendanceStudentBtn.onclick = () => openStudentModal(null);
+    }
+
+    // teachers
+    const teacherBody = document.getElementById("teacherBody");
+    if(teacherBody){
+      teacherBody.innerHTML = teachers.length ? "" : `<tr><td colspan="5" style="padding:26px;text-align:center;color:var(--muted)">No teacher found.</td></tr>`;
+      teachers.forEach(t => {
+        const tpl = document.getElementById("teacherRow").content.cloneNode(true);
+        tpl.querySelector(".t_name").textContent = t.name;
+        tpl.querySelector(".t_subject").textContent = t.subject;
+        tpl.querySelector(".t_classes").textContent = t.classes;
+        const st = tpl.querySelector(".t_status");
+        st.textContent = t.status;
+        st.className = `badge ${t.status === "On Duty" ? "paid" : "partial"}`;
+        tpl.querySelector(".t_action").innerHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-soft tEdit" data-id="${t.id}">Edit</button><button class="btn btn-danger tDelete" data-id="${t.id}">Delete</button></div>`;
+        teacherBody.appendChild(tpl);
+        const row = teacherBody.lastElementChild;
+        row.querySelector(".tEdit").onclick = () => openTeacherModal(t.id);
+        row.querySelector(".tDelete").onclick = () => deleteTeacher(t.id);
+      });
+      const addTeacherBtn = document.getElementById("addTeacherBtn");
+      if(addTeacherBtn) addTeacherBtn.onclick = () => openTeacherModal(null);
+    }
+
+    // results edit/delete from section
+    document.querySelectorAll(".resultEdit").forEach(btn => btn.onclick = () => openStudentModal(Number(btn.dataset.id)));
+    document.querySelectorAll(".resultDelete").forEach(btn => btn.onclick = () => deleteStudent(Number(btn.dataset.id)));
+    document.querySelectorAll(".resultPdf").forEach(btn => btn.onclick = () => downloadMarksheetPdf(Number(btn.dataset.id)));
+    document.querySelectorAll(".noticeEdit").forEach(btn => btn.onclick = () => editNotice(Number(btn.dataset.id)));
+    document.querySelectorAll(".noticeDelete").forEach(btn => btn.onclick = () => deleteNotice(Number(btn.dataset.id)));
+    document.querySelectorAll(".ttEdit").forEach(btn => btn.onclick = () => editPeriod(Number(btn.dataset.id)));
+    document.querySelectorAll(".ttDelete").forEach(btn => btn.onclick = () => deletePeriod(Number(btn.dataset.id)));
+    document.querySelectorAll(".msEdit").forEach(btn => btn.onclick = () => openMarksheetModal(Number(btn.dataset.id)));
+    document.querySelectorAll(".msReset").forEach(btn => btn.onclick = () => resetMarksheet(Number(btn.dataset.id)));
+    document.querySelectorAll(".msDelete").forEach(btn => btn.onclick = () => deleteMarksheet(Number(btn.dataset.id)));
+    document.querySelectorAll(".msPdf").forEach(btn => btn.onclick = () => downloadMarksheetPdf(Number(btn.dataset.id)));
+    document.querySelectorAll(".attEdit").forEach(btn => btn.onclick = () => openStudentModal(Number(btn.dataset.id)));
+    document.querySelectorAll(".attDelete").forEach(btn => btn.onclick = () => deleteStudent(Number(btn.dataset.id)));
+    document.querySelectorAll(".feeOpen").forEach(btn => btn.onclick = () => openFeeModal(Number(btn.dataset.id)));
+    document.querySelectorAll(".feeLedger").forEach(btn => btn.onclick = () => openFeeModal(Number(btn.dataset.id)));
+    document.querySelectorAll(".feePdf").forEach(btn => btn.onclick = () => downloadFeePdf(Number(btn.dataset.id)));
+    document.querySelectorAll(".feeClear").forEach(btn => btn.onclick = () => deleteAllStudentFees(Number(btn.dataset.id)));
+    document.querySelectorAll(".classFeeEdit").forEach(btn => btn.onclick = () => updateClassFee(btn.dataset.level));
+    document.querySelectorAll(".libEdit").forEach(btn => btn.onclick = () => editLibraryItem(Number(btn.dataset.id)));
+    document.querySelectorAll(".libDelete").forEach(btn => btn.onclick = () => deleteLibraryItem(Number(btn.dataset.id)));
+    document.querySelectorAll(".trEdit").forEach(btn => btn.onclick = () => editTransportItem(Number(btn.dataset.id)));
+    document.querySelectorAll(".trDelete").forEach(btn => btn.onclick = () => deleteTransportItem(Number(btn.dataset.id)));
+    document.querySelectorAll(".holEdit").forEach(btn => btn.onclick = () => editHolidayItem(Number(btn.dataset.id)));
+    document.querySelectorAll(".holDelete").forEach(btn => btn.onclick = () => deleteHolidayItem(Number(btn.dataset.id)));
+    document.querySelectorAll(".repEdit").forEach(btn => btn.onclick = () => editReportItem(Number(btn.dataset.id)));
+    document.querySelectorAll(".repDelete").forEach(btn => btn.onclick = () => deleteReportItem(Number(btn.dataset.id)));
+    const printFeeReportBtn = document.getElementById("printFeeReportBtn"); if(printFeeReportBtn) printFeeReportBtn.onclick = () => window.print();
+    const refreshFeeClassReport = document.getElementById("refreshFeeClassReport"); if(refreshFeeClassReport) refreshFeeClassReport.onclick = renderApp;
+    const feeMonthFilter = document.getElementById("feeMonthFilter"); if(feeMonthFilter) feeMonthFilter.onchange = (e) => { feeMonthSelection = e.target.value || feeMonthSelection; renderApp(); };
+    const feeSearchInput = document.getElementById("feeSearchInput"); if(feeSearchInput) feeSearchInput.oninput = (e) => { feeSearchTerm = e.target.value; renderApp(); };
+    const addFeeBtn = document.getElementById("addFeeBtn"); if(addFeeBtn) addFeeBtn.onclick = () => { const first = students[0]; if(first) openFeeModal(first.id); };
+    const addAttendanceStudentBtn = document.getElementById("addAttendanceStudentBtn"); if(addAttendanceStudentBtn) addAttendanceStudentBtn.onclick = () => openStudentModal(null);
+    const addNoticeBtn = document.getElementById("addNoticeBtn"); if(addNoticeBtn) addNoticeBtn.onclick = addNotice;
+    const addPeriodBtn = document.getElementById("addPeriodBtn"); if(addPeriodBtn) addPeriodBtn.onclick = addPeriod;
+    const addLibraryBtn = document.getElementById("addLibraryBtn"); if(addLibraryBtn) addLibraryBtn.onclick = addLibraryItem;
+    const addTransportBtn = document.getElementById("addTransportBtn"); if(addTransportBtn) addTransportBtn.onclick = addTransportItem;
+    const addHolidayBtn = document.getElementById("addHolidayBtn"); if(addHolidayBtn) addHolidayBtn.onclick = addHolidayItem;
+    const addReportBtn = document.getElementById("addReportBtn"); if(addReportBtn) addReportBtn.onclick = addReportItem;
+    const editAdminLoginBtn = document.getElementById("editAdminLoginBtn"); if(editAdminLoginBtn) editAdminLoginBtn.onclick = openSettingsModal;
+  }
+
+  function openStudentModal(id=null){
+    editingId = id;
+    modalTitle.textContent = id ? "Edit Student" : "Add Student";
+    const s = id ? students.find(x => x.id===id) : null;
+    fillLevelSelect("fLevel", s ? s.level : "Nursery");
+    setModalValues({
+      fName: s?.name || "",
+      fAdm: s?.admissionNo || `ADM-2026-${String(students.length+1).padStart(3,"0")}`,
+      fSection: s?.section || "A",
+      fRoll: s?.rollNo || "",
+      fGender: s?.gender || "Male",
+      fFather: s?.fatherName || "",
+      fMother: s?.motherName || "",
+      fDOB: s?.dob || "",
+      fStatus: s?.status || "Active",
+      fFee: s?.fee || "Paid",
+      fMonthlyFee: s?.monthlyFee ?? classFeeAmount(s?.level || "Nursery"),
+      fAttend: s?.attendance ?? 90,
+      fMobile: s?.mobile || "",
+      fAddress: s?.address || "",
+      fRemark: s?.remark || ""
+    });
+    studentModal.style.display = "flex";
+  }
+
+  function fillLevelSelect(id, selected){
+    const el = document.getElementById(id);
+    el.innerHTML = levels.map(v => `<option value="${v}" ${v===selected ? "selected" : ""}>${v}</option>`).join("");
+  }
+
+  function setModalValues(obj){
+    Object.entries(obj).forEach(([id,val]) => { const el = document.getElementById(id); if(el) el.value = val; });
+  }
+
+  function saveStudent(){
+    const data = {
+      name: document.getElementById("fName").value.trim(),
+      admissionNo: document.getElementById("fAdm").value.trim(),
+      level: document.getElementById("fLevel").value,
+      section: document.getElementById("fSection").value.trim(),
+      rollNo: document.getElementById("fRoll").value.trim(),
+      gender: document.getElementById("fGender").value,
+      fatherName: document.getElementById("fFather").value.trim(),
+      motherName: document.getElementById("fMother").value.trim(),
+      dob: document.getElementById("fDOB").value,
+      status: document.getElementById("fStatus").value,
+      fee: document.getElementById("fFee").value,
+      monthlyFee: Number(document.getElementById("fMonthlyFee").value || 0),
+      attendance: Number(document.getElementById("fAttend").value || 0),
+      mobile: document.getElementById("fMobile").value.trim(),
+      address: document.getElementById("fAddress").value.trim(),
+      remark: document.getElementById("fRemark").value.trim()
+    };
+    if(!data.name || !data.admissionNo || !data.level || !data.section || !data.rollNo){
+      alert("Enter name, admission number, level, section and roll number.");
+      return;
+    }
+    if(editingId){
+      students = students.map(s => s.id===editingId ? { ...s, ...data } : s);
+    } else {
+      if(!data.dob){ data.dob = `2010-01-${String((students.length % 27) + 1).padStart(2,"0")}`; }
+      students.unshift({ id: Date.now(), ...data });
+    }
+    saveStudents();
+    ensureMarksheets();
+    ensureFees();
+    studentModal.style.display = "none";
+    renderApp();
+  }
+
+  function deleteStudent(id){
+    if(!confirm("Delete this student record?")) return;
+    students = students.filter(s => s.id !== id);
+    saveStudents();
+    ensureMarksheets();
+    feeRecords = feeRecords.filter(r => r.studentId !== id);
+    saveFeeRecords();
+    renderApp();
+  }
+
+  function approveRegistration(id){
+    const r = registrations.find(x=>x.id===id);
+    if(!r) return;
+    const newStudent = {
+      id: Date.now(),
+      admissionNo: `ADM-2026-${String(students.length+1).padStart(3,"0")}`,
+      name: r.name,
+      level: r.applyFor,
+      section: "A",
+      rollNo: String(students.length+1),
+      gender: "Male",
+      fatherName: r.parent || "",
+      motherName: "",
+      status: "Active",
+      fee: "Due",
+      attendance: 90,
+      mobile: r.mobile,
+      address: r.address || "",
+      remark: r.note || "Approved from registration"
+    };
+    students.unshift(newStudent);
+    registrations = registrations.filter(x=>x.id!==id);
+    saveStudents(); saveRegs();
+    ensureMarksheets();
+    ensureFees();
+    renderApp();
+  }
+
+  function removeRegistration(id){
+    if(!confirm("Delete this registration?")) return;
+    registrations = registrations.filter(x=>x.id!==id);
+    saveRegs();
+    renderApp();
+  }
+
+  function openRegModal(){
+    fillLevelSelect("rApply","Nursery");
+    document.getElementById("rName").value = "";
+    document.getElementById("rMobile").value = "";
+    document.getElementById("rParent").value = "";
+    document.getElementById("rAddress").value = "";
+    document.getElementById("rNote").value = "";
+    document.getElementById("rOtp").value = "";
+    otpState = { code:"", verified:false, sent:false, phone:"" };
+    document.getElementById("otpNote").textContent = "OTP will be displayed only in this demo portal. In production it should be sent by SMS.";
+    regModal.style.display = "flex";
+  }
+
+  function saveReg(){
+    const data = {
+      id: Date.now(),
+      name: document.getElementById("rName").value.trim(),
+      mobile: document.getElementById("rMobile").value.trim(),
+      applyFor: document.getElementById("rApply").value,
+      parent: document.getElementById("rParent").value.trim(),
+      address: document.getElementById("rAddress").value.trim(),
+      note: document.getElementById("rNote").value.trim(),
+      date: new Date().toISOString().slice(0,10),
+      status: "Pending",
+      verified: otpState.verified
+    };
+    if(!data.name || !data.mobile || !data.applyFor || !data.parent){
+      alert("Enter name, mobile, class and parent name.");
+      return;
+    }
+    if(!otpState.verified){
+      alert("Verify OTP before submitting.");
+      return;
+    }
+    registrations.unshift(data);
+    saveRegs();
+    regModal.style.display = "none";
+    renderApp();
+  }
+
+  function openTeacherModal(id=null){
+    teacherEditingId = id;
+    teacherModalTitle.textContent = id ? "Edit Teacher" : "Add Teacher";
+    const t = id ? teachers.find(x=>x.id===id) : null;
+    document.getElementById("tName").value = t?.name || "";
+    document.getElementById("tSubject").value = t?.subject || "";
+    document.getElementById("tClasses").value = t?.classes || "";
+    document.getElementById("tStatus").value = t?.status || "On Duty";
+    teacherModal.style.display = "flex";
+  }
+
+  function saveTeacher(){
+    const data = {
+      name: document.getElementById("tName").value.trim(),
+      subject: document.getElementById("tSubject").value.trim(),
+      classes: document.getElementById("tClasses").value.trim(),
+      status: document.getElementById("tStatus").value
+    };
+    if(!data.name || !data.subject || !data.classes){
+      alert("Enter teacher name, subject and classes.");
+      return;
+    }
+    if(teacherEditingId){
+      teachers = teachers.map(t => t.id===teacherEditingId ? { ...t, ...data } : t);
+    } else {
+      teachers.unshift({ id: Date.now(), ...data });
+    }
+    saveTeachers();
+    teacherModal.style.display = "none";
+    renderApp();
+  }
+
+  function deleteTeacher(id){
+    if(!confirm("Delete this teacher record?")) return;
+    teachers = teachers.filter(t => t.id !== id);
+    saveTeachers();
+    renderApp();
+  }
+
+  function addNotice(){
+    const title = prompt("Notice title:");
+    if(!title) return;
+    const desc = prompt("Notice description:");
+    if(!desc) return;
+    notices.unshift({ id: Date.now(), title, desc });
+    saveAll();
+    renderApp();
+  }
+  function editNotice(id){
+    const n = notices.find(x=>x.id===id);
+    if(!n) return;
+    const title = prompt("Edit notice title:", n.title);
+    if(title === null) return;
+    const desc = prompt("Edit notice description:", n.desc);
+    if(desc === null) return;
+    n.title = title;
+    n.desc = desc;
+    saveAll();
+    renderApp();
+  }
+  function deleteNotice(id){
+    if(!confirm("Delete this notice?")) return;
+    notices = notices.filter(n=>n.id!==id);
+    saveAll();
+    renderApp();
+  }
+
+  function addPeriod(){
+    const time = prompt("Period time (e.g. 02:00 PM):");
+    if(!time) return;
+    const subject = prompt("Subject / Activity:");
+    if(!subject) return;
+    const room = prompt("Room / Location:");
+    if(!room) return;
+    timetable.unshift({ id: Date.now(), time, subject, room });
+    saveAll();
+    renderApp();
+  }
+  function editPeriod(id){
+    const item = timetable.find(x => x.id === id);
+    if(!item) return;
+    const time = prompt("Edit time:", item[0]);
+    if(time === null) return;
+    const subject = prompt("Edit subject:", item[1]);
+    if(subject === null) return;
+    const room = prompt("Edit room:", item[2]);
+    if(room === null) return;
+    item.time = time; item.subject = subject; item.room = room;
+    saveAll();
+    renderApp();
+  }
+
+  function openMarksheetModal(studentId){
+    marksheetEditingId = studentId;
+    const student = students.find(s => s.id === studentId);
+    const ms = getMarksheet(studentId);
+    const modal = document.getElementById("marksheetModal");
+    const rows = document.getElementById("marksheetRows");
+    document.getElementById("marksheetModalTitle").textContent = `Marksheet · ${student?.name || ""}`;
+    document.getElementById("msStudentName").value = student?.name || "";
+    document.getElementById("msAdm").value = student?.admissionNo || "";
+    document.getElementById("msLevel").value = student?.level || "";
+    document.getElementById("msSection").value = student?.section || "";
+    document.getElementById("msRoll").value = student?.rollNo || "";
+    document.getElementById("msSession").value = SESSION;
+    document.getElementById("msNote").value = ms.note || "";
+    rows.innerHTML = "";
+    (ms.subjects || []).forEach(row => addMarkRow(row));
+    if(!ms.subjects || !ms.subjects.length) addMarkRow({subject:"English", theory:75, practical:0, maxTheory:80, maxPractical:20});
+    modal.style.display = "flex";
+  }
+
+  function addMarkRow(row = {}){
+    const rows = document.getElementById("marksheetRows");
+    const wrap = document.createElement("div");
+    wrap.className = "mark-row";
+    wrap.innerHTML = `
+      <input class="msSubject" placeholder="Subject name" value="${row.subject || ""}">
+      <input class="msTheory" type="number" min="0" max="100" placeholder="Theory" value="${row.theory ?? ""}">
+      <input class="msPractical" type="number" min="0" max="100" placeholder="Practical" value="${row.practical ?? ""}">
+      <input class="msMaxTheory" type="number" min="0" max="100" placeholder="Max Theory" value="${row.maxTheory ?? 80}">
+      <input class="msMaxPractical" type="number" min="0" max="100" placeholder="Max Practical" value="${row.maxPractical ?? 20}">
+      <button class="btn btn-danger msRemove" type="button">Delete</button>
+    `;
+    wrap.querySelector(".msRemove").onclick = () => wrap.remove();
+    rows.appendChild(wrap);
+  }
+
+  function collectMarksheetRows(){
+    const rows = [...document.querySelectorAll("#marksheetRows .mark-row")];
+    return rows.map(row => ({
+      subject: row.querySelector(".msSubject").value.trim(),
+      theory: Number(row.querySelector(".msTheory").value || 0),
+      practical: Number(row.querySelector(".msPractical").value || 0),
+      maxTheory: Number(row.querySelector(".msMaxTheory").value || 0),
+      maxPractical: Number(row.querySelector(".msMaxPractical").value || 0),
+    })).filter(r => r.subject);
+  }
+
+  function saveMarksheet(){
+    if(!marksheetEditingId) return;
+    const student = students.find(s => s.id === marksheetEditingId);
+    if(!student) return;
+    const subjects = collectMarksheetRows();
+    if(!subjects.length){
+      alert("Add at least one subject.");
+      return;
+    }
+    const note = document.getElementById("msNote").value.trim();
+    const next = { studentId: marksheetEditingId, note, subjects };
+    const idx = marksheets.findIndex(m => m.studentId === marksheetEditingId);
+    if(idx >= 0) marksheets[idx] = next; else marksheets.unshift(next);
+    saveMarks();
+    document.getElementById("marksheetModal").style.display = "none";
+    renderApp();
+  }
+
+  function resetMarksheet(studentId){
+    if(!confirm("Reset this marksheet to default subjects?")) return;
+    const student = students.find(s => s.id === studentId);
+    if(!student) return;
+    const next = buildDefaultMarksheet(student);
+    const idx = marksheets.findIndex(m => m.studentId === studentId);
+    if(idx >= 0) marksheets[idx] = next; else marksheets.unshift(next);
+    saveMarks();
+    renderApp();
+  }
+
+  function deleteMarksheet(studentId){
+    if(!confirm("Delete saved marksheet data for this student?")) return;
+    marksheets = marksheets.filter(m => m.studentId !== studentId);
+    saveMarks();
+    renderApp();
+  }
+
+  function downloadMarksheetPdf(studentId){
+    const student = students.find(s => s.id === studentId);
+    const ms = getMarksheet(studentId);
+    if(!student || !ms) return;
+    const subjects = ms.subjects || [];
+    const percent = calcPercent(subjects);
+    const grade = gradeFromPercent(percent);
+    const result = resultFromPercent(percent);
+    const { jsPDF } = window.jspdf || {};
+    if(!jsPDF){
+      alert("PDF library load nahi hua. Internet on karke page reload karein.");
+      return;
+    }
+    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+    const pageW = doc.internal.pageSize.getWidth();
+    const pageH = doc.internal.pageSize.getHeight();
+    doc.setDrawColor(20);
+    doc.setLineWidth(0.6);
+    doc.rect(8, 8, pageW - 16, pageH - 16);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text(SCHOOL_NAME, pageW / 2, 18, { align: "center" });
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "normal");
+    doc.text("Academic Session " + SESSION, pageW / 2, 24, { align: "center" });
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("MARKSHEET / PROGRESS REPORT", pageW / 2, 34, { align: "center" });
+    doc.setLineWidth(0.25);
+    doc.line(12, 38, pageW - 12, 38);
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text("Student Name:", 14, 46);
+    doc.setFont("helvetica", "normal");
+    doc.text(student.name || "", 44, 46);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Admission No.:", 108, 46);
+    doc.setFont("helvetica", "normal");
+    doc.text(student.admissionNo || "", 141, 46);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Class:", 14, 53);
+    doc.setFont("helvetica", "normal");
+    doc.text(`${student.level || ""}-${student.section || ""}`, 31, 53);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Roll No.:", 60, 53);
+    doc.setFont("helvetica", "normal");
+    doc.text(student.rollNo || "", 82, 53);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Father Name:", 108, 53);
+    doc.setFont("helvetica", "normal");
+    doc.text(student.fatherName || "", 142, 53);
+
+    const tableRows = subjects.map((s, i) => {
+      const total = calcRowTotal(s);
+      const max = Number(s.maxTheory || 0) + Number(s.maxPractical || 0);
+      const p = max ? Math.round((total / max) * 100) : 0;
+      return [String(i + 1), s.subject, String(s.theory || 0), String(s.practical || 0), String(total), String(max), String(p) + "%", gradeFromPercent(p)];
+    });
+
+    doc.autoTable({
+      startY: 62,
+      head: [["S.No", "Subject", "Theory", "Practical", "Total", "Max", "%", "Grade"]],
+      body: tableRows,
+      styles: { fontSize: 9, cellPadding: 2.2, lineColor: [80,80,80], lineWidth: 0.1 },
+      headStyles: { fillColor: [20,20,20], textColor: 255 },
+      margin: { left: 12, right: 12 },
+    });
+
+    const endY = doc.lastAutoTable.finalY + 10;
+    doc.setFont("helvetica", "bold");
+    doc.text(`Total Percentage: ${percent}%`, 14, endY);
+    doc.text(`Grade: ${grade}`, 84, endY);
+    doc.text(`Result: ${result}`, 130, endY);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text(`Remarks: ${ms.note || "Verified by school office"}`, 14, endY + 8);
+
+    doc.line(14, pageH - 28, 65, pageH - 28);
+    doc.line(135, pageH - 28, 186, pageH - 28);
+    doc.text("Class Teacher", 27, pageH - 22);
+    doc.text("Principal", 151, pageH - 22);
+
+    doc.setFontSize(8);
+    doc.text("This is a computer generated marksheet.", pageW / 2, pageH - 10, { align: "center" });
+
+    doc.save(`${student.name || "marksheet"}.pdf`);
+  }
+
+  function deletePeriod(id){
+    if(!confirm("Delete this period?")) return;
+    timetable = timetable.filter(x => x.id !== id);
+    saveAll();
+    renderApp();
+  }
+
+
+  let feeEditingStudentId = null;
+  let feeEditingRecordId = null;
+
+  function openFeeModal(studentId){
+    feeEditingStudentId = studentId;
+    feeEditingRecordId = null;
+    const student = students.find(s => s.id === studentId);
+    if(!student) return;
+    const modal = document.getElementById("feeModal");
+    document.getElementById("feeModalTitle").textContent = `Fee Ledger · ${student.name}`;
+    document.getElementById("feeStudentName").value = student.name || "";
+    document.getElementById("feeAdm").value = student.admissionNo || "";
+    document.getElementById("feeClass").value = `${student.level || ""}-${student.section || ""}`;
+    document.getElementById("feeRoll").value = student.rollNo || "";
+    document.getElementById("feeMonth").value = currentMonth();
+    document.getElementById("feeMonthlyFee").value = studentMonthlyFee(student);
+    document.getElementById("feePaid").value = 0;
+    document.getElementById("feePrevDue").value = 0;
+    document.getElementById("feeNote").value = "";
+    renderFeeLedger();
+    modal.style.display = "flex";
+  }
+
+  function renderFeeLedger(){
+    const list = document.getElementById("feeLedgerList");
+    if(!list || !feeEditingStudentId) return;
+    const student = students.find(s => s.id === feeEditingStudentId);
+    const entries = feeRecordsForStudent(feeEditingStudentId).sort((a,b) => String(b.month).localeCompare(String(a.month)));
+    const paid = feePaidTotal(feeEditingStudentId);
+    const due = feeDueTotal(feeEditingStudentId);
+    list.innerHTML = `
+      <div class="fee-summary">
+        <div class="fee-stat"><div class="k">Monthly Fee</div><div class="v">₹${studentMonthlyFee(student)}</div></div>
+        <div class="fee-stat"><div class="k">Total Paid</div><div class="v">₹${money(paid)}</div></div>
+        <div class="fee-stat"><div class="k">Total Due</div><div class="v">₹${money(due)}</div></div>
+        <div class="fee-stat"><div class="k">Records</div><div class="v">${entries.length}</div></div>
+      </div>
+      <div class="fee-list">
+        ${entries.length ? entries.map(r => `
+          <div class="fee-ledger-row">
+            <div>
+              <div style="font-weight:900">${r.month}</div>
+              <div class="small">${r.note || "Monthly fee entry"}</div>
+            </div>
+            <div><div class="small">Due</div><div style="font-weight:900">₹${money(r.due)}</div></div>
+            <div><div class="small">Paid</div><div style="font-weight:900">₹${money(r.paid)}</div></div>
+            <div><span class="badge ${r.status === "Paid" ? "paid" : r.status === "Partial" ? "partial" : "due"}">${r.status}</span></div>
+            <div class="fee-action">
+              <button class="btn btn-soft feeEditRow" data-id="${r.id}">Edit</button>
+              <button class="btn btn-danger feeDeleteRow" data-id="${r.id}">Delete</button>
+            </div>
+          </div>
+        `).join("") : `<div class="note">No fee records found.</div>`}
+      </div>
+    `;
+    document.querySelectorAll(".feeEditRow").forEach(btn => btn.onclick = () => editFeeRecord(Number(btn.dataset.id)));
+    document.querySelectorAll(".feeDeleteRow").forEach(btn => btn.onclick = () => deleteFeeRecord(Number(btn.dataset.id)));
+  }
+
+  function editFeeRecord(recordId){
+    const rec = feeRecords.find(r => r.id === recordId);
+    if(!rec) return;
+    feeEditingRecordId = rec.id;
+    document.getElementById("feeMonth").value = rec.month;
+    document.getElementById("feeMonthlyFee").value = rec.due;
+    document.getElementById("feePaid").value = rec.paid;
+    document.getElementById("feePrevDue").value = rec.prevDue || 0;
+    document.getElementById("feeNote").value = rec.note || "";
+  }
+
+  function deleteFeeRecord(recordId){
+    if(!confirm("Delete this fee entry?")) return;
+    feeRecords = feeRecords.filter(r => r.id !== recordId);
+    saveFeeRecords();
+    renderFeeLedger();
+    renderApp();
+  }
+
+  function saveFeeEntry(){
+    const student = students.find(s => s.id === feeEditingStudentId);
+    if(!student) return;
+    const month = document.getElementById("feeMonth").value || currentMonth();
+    const due = Number(document.getElementById("feeMonthlyFee").value || 0);
+    const paid = Number(document.getElementById("feePaid").value || 0);
+    const prevDue = Number(document.getElementById("feePrevDue").value || 0);
+    const note = document.getElementById("feeNote").value.trim();
+    const entry = normalizeFeeRecord({
+      id: feeEditingRecordId || Date.now(),
+      studentId: student.id,
+      month,
+      due: due + prevDue,
+      paid,
+      prevDue,
+      note: note || `${student.name} fee for ${month}`
+    });
+
+    const sameIndex = feeRecords.findIndex(r => r.id === entry.id);
+    if(sameIndex >= 0){
+      feeRecords[sameIndex] = entry;
+    } else {
+      const dupIndex = feeRecords.findIndex(r => r.studentId === student.id && r.month === month);
+      if(dupIndex >= 0){
+        feeRecords[dupIndex] = { ...feeRecords[dupIndex], ...entry, id: feeRecords[dupIndex].id };
+      } else {
+        feeRecords.unshift(entry);
+      }
+    }
+    feeEditingRecordId = null;
+    saveFeeRecords();
+    renderFeeLedger();
+    renderApp();
+  }
+
+  function addFeeEntryForStudent(){
+    feeEditingRecordId = null;
+    document.getElementById("feeMonth").value = currentMonth();
+    document.getElementById("feeMonthlyFee").value = studentMonthlyFee(students.find(s => s.id === feeEditingStudentId));
+    document.getElementById("feePaid").value = 0;
+    document.getElementById("feePrevDue").value = 0;
+    document.getElementById("feeNote").value = "";
+  }
+
+  function deleteAllStudentFees(studentId){
+    if(!confirm("Delete all fee records for this student?")) return;
+    feeRecords = feeRecords.filter(r => r.studentId !== studentId);
+    saveFeeRecords();
+    renderApp();
+  }
+
+  function updateClassFee(level){
+    const current = classFees[level] ?? 0;
+    const val = prompt(`Monthly fee for Class ${level}:`, String(current));
+    if(val === null) return;
+    classFees[level] = Number(val || 0);
+    saveClassFees();
+    // fill empty student monthly fee defaults on next save/refresh
+    students = students.map(s => s.level === level && !s.monthlyFee ? { ...s, monthlyFee: Number(val || 0) } : s);
+    saveStudents();
+    ensureFees();
+    renderApp();
+  }
+
+  function classFeeRows(q){
+    const levelsToShow = levels.filter(l => l !== "all");
+    return levelsToShow.map(level => {
+      const studentsInClass = students.filter(s => s.level === level);
+      const selectedMonth = document.getElementById("feeMonthFilter")?.value || currentMonth();
+      const classRecords = feeRecords.filter(r => {
+        const s = students.find(x => x.id === r.studentId);
+        return s && s.level === level && r.month === selectedMonth;
+      });
+      const paid = classRecords.reduce((a,r)=>a + Number(r.paid || 0),0);
+      const due = classRecords.reduce((a,r)=>a + Number(r.balance || 0),0);
+      const expected = studentsInClass.reduce((a,s)=>a + studentMonthlyFee(s),0);
+      return { level, studentsInClass, paid, due, expected };
+    }).filter(row => !q || [row.level, row.paid, row.due, row.expected].join(" ").toLowerCase().includes(q));
+  }
+
+  function bindButtons(){
+    document.getElementById("closeModal").onclick = () => studentModal.style.display = "none";
+    document.getElementById("cancelModal").onclick = () => studentModal.style.display = "none";
+    document.getElementById("saveStudent").onclick = saveStudent;
+    studentModal.addEventListener("click", e => { if(e.target === studentModal) studentModal.style.display = "none"; });
+
+    document.getElementById("closeRegModal").onclick = () => regModal.style.display = "none";
+    document.getElementById("cancelReg").onclick = () => regModal.style.display = "none";
+    document.getElementById("saveReg").onclick = saveReg;
+    regModal.addEventListener("click", e => { if(e.target === regModal) regModal.style.display = "none"; });
+
+    document.getElementById("closeTeacherModal").onclick = () => teacherModal.style.display = "none";
+    document.getElementById("cancelTeacher").onclick = () => teacherModal.style.display = "none";
+    document.getElementById("saveTeacher").onclick = saveTeacher;
+    teacherModal.addEventListener("click", e => { if(e.target === teacherModal) teacherModal.style.display = "none"; });
+
+    document.getElementById("closeMarksheetModal").onclick = () => document.getElementById("marksheetModal").style.display = "none";
+    document.getElementById("cancelMarksheet").onclick = () => document.getElementById("marksheetModal").style.display = "none";
+    document.getElementById("saveMarksheet").onclick = saveMarksheet;
+    document.getElementById("downloadMarksheetPdf").onclick = () => downloadMarksheetPdf(marksheetEditingId);
+    document.getElementById("addMarkRow").onclick = () => addMarkRow();
+    document.getElementById("marksheetModal").addEventListener("click", e => { if(e.target === document.getElementById("marksheetModal")) document.getElementById("marksheetModal").style.display = "none"; });
+
+    document.getElementById("closeFeeModal").onclick = () => document.getElementById("feeModal").style.display = "none";
+    document.getElementById("cancelFeeModal").onclick = () => document.getElementById("feeModal").style.display = "none";
+    document.getElementById("saveFeeEntry").onclick = saveFeeEntry;
+    document.getElementById("addFeeEntry").onclick = addFeeEntryForStudent;
+    document.getElementById("downloadFeePdfBtn").onclick = () => downloadFeePdf(feeEditingStudentId);
+    document.getElementById("feeModal").addEventListener("click", e => { if(e.target === document.getElementById("feeModal")) document.getElementById("feeModal").style.display = "none"; });
+
+    document.getElementById("closeSettingsModal").onclick = () => document.getElementById("settingsModal").style.display = "none";
+    document.getElementById("cancelSettingsModal").onclick = () => document.getElementById("settingsModal").style.display = "none";
+    document.getElementById("saveSettingsBtn").onclick = saveSettings;
+    document.getElementById("settingsModal").addEventListener("click", e => { if(e.target === document.getElementById("settingsModal")) document.getElementById("settingsModal").style.display = "none"; });
+
+    document.getElementById("sendOtp").onclick = () => {
+      const phone = document.getElementById("rMobile").value.trim();
+      if(!phone || phone.length < 10){
+        alert("Enter a valid mobile number first.");
+        return;
+      }
+      otpState.phone = phone;
+      otpState.code = String(Math.floor(100000 + Math.random()*900000));
+      otpState.sent = true;
+      otpState.verified = false;
+      document.getElementById("otpNote").textContent = "Demo OTP: " + otpState.code;
+    };
+    document.getElementById("verifyOtp").onclick = () => {
+      const entered = document.getElementById("rOtp").value.trim();
+      otpState.verified = otpState.sent && entered === otpState.code;
+      document.getElementById("otpNote").textContent = otpState.verified ? "OTP verified successfully." : "OTP verification failed.";
+    };
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+      studentModal.style.display = "none";
+      regModal.style.display = "none";
+      teacherModal.style.display = "none";
+      const ms = document.getElementById("marksheetModal"); if(ms) ms.style.display = "none";
+    }
+  });
+
+  applyTheme();
+  // initial load
+  if(section === "landing") renderLanding();
+  else if(section === "auth") renderAuth();
+  else renderApp();
+</script>
+</body>
+</html>
